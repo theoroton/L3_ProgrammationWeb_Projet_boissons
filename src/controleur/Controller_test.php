@@ -1,6 +1,6 @@
 <?php
 
-namespace cocktails\controler;
+namespace cocktails\controleur;
 
 use \cocktails\vue\Vue_test;
 

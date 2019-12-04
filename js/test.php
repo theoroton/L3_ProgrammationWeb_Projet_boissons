@@ -6,6 +6,7 @@ function delFav($id){
   if (in_array($id, $_SESSION['favoris'])){
     $key = array_search($id, $_SESSION['favoris']);
     unset($_SESSION['favoris'][$key]);
+    echo "del $key";
   }
 }
 

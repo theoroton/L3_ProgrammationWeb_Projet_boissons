@@ -14,7 +14,7 @@ $app->get('/', function() {
   if (!isset($_SESSION['favoris'])){
     $_SESSION['favoris'] = array(99,1,2);
   } else {
-    var_dump($_SESSION['favoris']);
+    echo "<pre>" , var_dump($_SESSION['favoris']) , "</pre>";
   }
   echo "<a href=\"ingredient?name=Aliment\">Ingrédient</a><br>";
   echo "<a href=\"panier\">Panier</a><br>";

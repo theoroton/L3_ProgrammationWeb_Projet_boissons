@@ -16,8 +16,12 @@ class ControleurRecettes {
     $preparation = $recette->getPreparation();
     $ingredients_requis = $recette->getIngredientsRequis();
     $image = $recette->getImage();
+    $fav = false;
+    if (in_array($id,$_SESSION['favoris'])){
+      $fav = true;
+    }
 
-    $vue = new VueRecette($id, $titre, $ingrs, $preparation, $ingredients_requis, $image);
+    $vue = new VueRecette($id, $titre, $ingrs, $preparation, $ingredients_requis, $image, $fav);
     $vue->render();
   }
 

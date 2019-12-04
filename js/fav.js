@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: './js/test.php',
+      url: './js/modifyFavoris.php',
       data: {
         "callAddFav": id
       },
@@ -26,7 +26,7 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: './js/test.php',
+      url: 'js/modifyFavoris.php',
       data: {
         "callDelFav": id
       },
@@ -47,7 +47,7 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: './js/test.php',
+      url: 'js/modifyFavoris.php',
       data: {
         "callDelFav": id
       },

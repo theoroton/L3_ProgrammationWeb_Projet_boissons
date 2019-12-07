@@ -1,15 +1,23 @@
 <?php
 
-require_once ('vendor/autoload.php');
+require_once('vendor/autoload.php');
 $app = new \Slim\App;
 
-use \cocktails\controleur\Controller_test;
 use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
 use \cocktails\controleur\ControleurConnexion;
+use \cocktails\vue\VueAccueil;
 
 session_start();
+
+$app->get('/accueil', function () {
+  if (!isset($_SESSION['favoris'])) {
+    $_SESSION['favoris'] = array();
+  }
+  $vue = new VueAccueil();
+  $vue->render();
+});
 
 $app->get('/connexion', function(){
   $con = new ControleurConnexion();
@@ -31,16 +39,8 @@ $app->post('/inscription', function(){
   $con->inscription();
 });
 
-$app->get('/accueil', function() {
-  if (!isset($_SESSION['favoris'])){
-    $_SESSION['favoris'] = array();
-  }
-  echo "<a href=\"ingredient?name=Aliment\">Ingrédient</a><br>";
-  echo "<a href=\"panier\">Panier</a><br>";
-});
-
-$app->get('/recette', function() {
-  if (isset($_GET['id'])){
+$app->get('/recette', function () {
+  if (isset($_GET['id'])) {
     $con = new ControleurRecettes();
     $con->afficherRecette();
   } else {
@@ -48,8 +48,8 @@ $app->get('/recette', function() {
   }
 });
 
-$app->get('/ingredient',function(){
-  if (isset($_GET['name'])){
+$app->get('/ingredient', function () {
+  if (isset($_GET['name'])) {
     $con = new ControleurIngredients();
     $con->afficherIngredient();
   } else {
@@ -57,14 +57,9 @@ $app->get('/ingredient',function(){
   }
 });
 
-$app->get('/panier',function(){
-    $con = new ControleurPanier();
-    $con->afficherPanier();
-});
-
-$app->get('/calcul', function(){
-  $c = new Controller_test();
-  $c->test();
+$app->get('/panier', function () {
+  $con = new ControleurPanier();
+  $con->afficherPanier();
 });
 
 //session_destroy();

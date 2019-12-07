@@ -2,6 +2,8 @@
 
 namespace cocktails\vue;
 
+use \cocktails\vue\VueHeader;
+
 class VueRecette  {
 
   private $id;
@@ -23,6 +25,9 @@ class VueRecette  {
   }
 
   public function render(){
+      $vue = new VueHeader();
+      $header = $vue->render();
+
       $content = <<<END
         <input type="hidden" id="id" value=$this->id>
         <strong>Titre :</strong> $this->titre<br><br>
@@ -103,7 +108,7 @@ END;
           <script src='js/fav.js'></script>
           <title>$this->titre</title>
         </head>
-
+        $header
         <body>
 
           $content

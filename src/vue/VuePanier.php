@@ -3,6 +3,7 @@
 namespace cocktails\vue;
 
 use \cocktails\models\Recette;
+use \cocktails\vue\VueHeader;
 
 class VuePanier {
 
@@ -13,6 +14,9 @@ class VuePanier {
   }
 
   public function render(){
+      $vue = new VueHeader();
+      $header = $vue->render();
+
       $content = "<strong><h2>Panier</h2></strong><br><br><center>";
 
       if (sizeof($this->recettesFavs) > 0){
@@ -51,7 +55,7 @@ END;
           <script src='js/fav.js'></script>
           <title>Panier</title>
         </head>
-
+        $header
         <body>
 
           $content

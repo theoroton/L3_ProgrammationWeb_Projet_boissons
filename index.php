@@ -7,14 +7,33 @@ use \cocktails\controleur\Controller_test;
 use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
+use \cocktails\controleur\ControleurConnexion;
 
 session_start();
 
-$app->get('/', function() {
+$app->get('/connexion', function(){
+  $con = new ControleurConnexion();
+  $con->afficherConnexion();
+});
+
+$app->post('/connexion', function(){
+  $con = new ControleurConnexion();
+  $con->connexion();
+});
+
+$app->get('/inscription', function(){
+  $con = new ControleurConnexion();
+  $con->afficherInscription();
+});
+
+$app->post('/inscription', function(){
+  $con = new ControleurConnexion();
+  $con->inscription();
+});
+
+$app->get('/accueil', function() {
   if (!isset($_SESSION['favoris'])){
-    $_SESSION['favoris'] = array(99,1,2);
-  } else {
-    echo "<pre>" , var_dump($_SESSION['favoris']) , "</pre>";
+    $_SESSION['favoris'] = array();
   }
   echo "<a href=\"ingredient?name=Aliment\">Ingrédient</a><br>";
   echo "<a href=\"panier\">Panier</a><br>";

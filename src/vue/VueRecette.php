@@ -79,7 +79,7 @@ END;
 //Favori
 ///////////////////////////////////////////////////////////////////////
 
-      $content .= "<span id='imgFav'><br>";
+      $content .= "<br><span id='imgFav'><br>";
 
       if ($this->favori){
         $content .= <<<END

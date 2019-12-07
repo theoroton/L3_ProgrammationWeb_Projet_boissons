@@ -3,11 +3,17 @@
 require_once('vendor/autoload.php');
 $app = new \Slim\App;
 
+use \Illuminate\Database\Capsule\Manager as DB;
 use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
 use \cocktails\controleur\ControleurConnexion;
 use \cocktails\vue\VueAccueil;
+
+$db=new DB();
+$db->addConnection(parse_ini_file('src/conf/conf.ini'));
+$db->setAsGlobal();
+$db->bootEloquent();
 
 session_start();
 

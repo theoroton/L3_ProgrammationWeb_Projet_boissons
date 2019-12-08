@@ -147,20 +147,20 @@ END;
     <form id="modification" method="post" action="modifierProfil">
             <p>
               <label> Login
-                  <input type="text" name="login" value=$login required>
+                  <input type="text" name="login" value="$login" required>
                   <span style="color:red"> * requis</span>
               </label>
             </p>
 
             <p>
               <label> Nom
-                  <input type="text" name="nom" value=$nom>
+                  <input type="text" name="nom" value="$nom">
               </label>
             </p>
 
             <p>
               <label> Prénom
-                  <input type="text" name="prenom" value=$prenom>
+                  <input type="text" name="prenom" value="$prenom">
               </label>
             </p>
 
@@ -172,7 +172,7 @@ END;
 
             <p>
               <label> Email
-                  <input type="text" name="email" value=$email>
+                  <input type="text" name="email" value="$email">
               </label>
             </p>
 
@@ -184,25 +184,25 @@ END;
 
             <p>
               <label> Adresse
-                  <input type="text" name="adresse" value=$adresse>
+                  <input type="text" name="adresse" value="$adresse">
               </label>
             </p>
 
             <p>
               <label> Code postal
-                  <input type="text" name="code_postal" value=$codePostal>
+                  <input type="text" name="code_postal" value="$codePostal">
               </label>
             </p>
 
             <p>
               <label> Ville
-                  <input type="text" name="ville" value=$ville>
+                  <input type="text" name="ville" value="$ville">
               </label>
             </p>
 
             <p>
               <label> Numéro de téléphone
-                  <input type="text" name="tel" value=$tel>
+                  <input type="text" name="tel" value="$tel">
               </label>
             </p>
 
@@ -313,7 +313,7 @@ END;
       }
       case 4 : {
         $content = $this->afficherModification();
-        $title = "Modifier profil";
+        $title = "Modifier le profil";
         $header = "";
         break;
       }

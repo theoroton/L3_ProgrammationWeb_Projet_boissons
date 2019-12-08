@@ -7,6 +7,18 @@ class VueHeader
 {
     public function render()
     {
+        var_dump($_SESSION['favoris']);
+        if (isset($_COOKIE['CookieCocktails'])){
+          $liens = <<<END
+            <a href="profil">Profil</a>
+            <a href="connexion">Déconnexion</a>
+END;
+        } else {
+          $liens = <<<END
+            <a href="connexion">Connexion</a>
+          END;
+        }
+
         $html = <<<END
         <header>
 
@@ -17,9 +29,7 @@ class VueHeader
                     <a href="ingredient?name=Aliment">Ingrédients</a>
                     <a href="#">Recettes</a>
                     <a href="panier">Mes recettes préférées</a>
-                    <a href="profil">Profil</a>
-                    <a href="connexion">Déconnexion</a>
-
+                    $liens
             </nav>
         </div>
 

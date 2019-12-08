@@ -9,6 +9,11 @@ use \cocktails\models\Utilisateur;
 class ControleurConnexion {
 
   public function afficherConnexion(){
+    if (isset($_COOKIE['CookieCocktails'])){
+      unset($_COOKIE['CookieCocktails']);
+      setcookie("CookieCocktails", "", time()-3600);
+    }
+    
     $vue = new VueConnexion();
     $vue->render(1);
   }
@@ -19,7 +24,9 @@ class ControleurConnexion {
   }
 
   public function afficherAccueil(){
-    if (!isset($_SESSION['favoris'])) {
+    if (isset($_COOKIE['CookieCocktails'])) {
+      session_unset();
+    } else if (!isset($_SESSION['favoris'])){
       $_SESSION['favoris'] = array();
     }
     $vue = new VueAccueil();
@@ -30,6 +37,9 @@ class ControleurConnexion {
     $utilisateur = Utilisateur::where('login', '=', $_POST['login'])->first();
     if (isset($utilisateur)){
       if(password_verify($_POST['mdp'],$utilisateur->mdp)){
+        $cookie = array('id' => $utilisateur->idUtilisateur);
+        setcookie("CookieCocktails", serialize($cookie));
+
         $redirection = <<<END
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Connexion réussie.</p>

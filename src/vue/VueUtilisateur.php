@@ -215,6 +215,38 @@ END;
     return $content;
   }
 
+  private function afficherModifMdp(){
+    $content = <<<END
+    <form id="modificationMdp" method="post" action="modifierMdp">
+            <p>
+              <label> Ancien mot de passe <span style="color:red">*</span>
+                  <input type="password" name="amdp" required>
+              </label>
+            </p>
+
+            <p>
+              <label> Nouveau mot de passe <span style="color:red">*</span>
+                  <input type="password" name="mdp1" required>
+              </label>
+            </p>
+
+            <p>
+              <label> Confirmer le nouveau mot de passe <span style="color:red">*</span>
+                  <input type="password" name="mdp2" required>
+              </label>
+            </p>
+
+            <p><span style="color:red">* Informations obligatoires</span></p>
+
+            <p>
+              <button id="bvalide" type="submit">Modifier</button>
+            </p>
+    </form>
+END;
+
+    return $content;
+  }
+
   private function afficherProfil(){
     $login = $this->utilisateur->login;
     $nom = $this->utilisateur->nom;
@@ -245,7 +277,11 @@ END;
         <p><strong>Téléphone : </strong>$tel</p>
 
         <form action="modifierProfil" method="get">
-          <button id="bmodifier" type="submit">Modifier le profil</button>
+          <input id="bmodifierInfos" type="submit" value="Modifier le profil">
+        </form>
+
+        <form action="modifierMdp" method="get">
+          <input id="bmodifierMdp" type="submit" value="Modifier le mot de passe">
         </form>
 END;
 
@@ -276,6 +312,11 @@ END;
       case 4 : {
         $content = $this->afficherModification();
         $title = "Modifier profil";
+        $header = "";
+      }
+      case 5 : {
+        $content = $this->afficherModifMdp();
+        $title = "Modifier le mot de passe";
         $header = "";
       }
     }

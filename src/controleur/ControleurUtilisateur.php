@@ -49,6 +49,11 @@ class ControleurUtilisateur {
     $vue->render(4);
   }
 
+  public function afficherModificationMdp(){
+    $vue = new VueUtilisateur(NULL);
+    $vue->render(5);
+  }
+
   public function afficherAccueil(){
     $vue = new VueAccueil();
     $vue->render();
@@ -285,6 +290,55 @@ END;
 
       echo $redirection;
       header("Refresh:3; url=modifierProfil");
+    }
+  }
+
+  public function modificationMdp(){
+    $cookie = unserialize($_COOKIE['CookieCocktails']);
+    $id = $cookie['id'];
+    $utilisateur = Utilisateur::where('idUtilisateur', '=', $id)->first();
+
+    if (password_verify($_POST['amdp'],$utilisateur->mdp)){
+      if ($this->verifMdp()){
+        $utilisateur->mdp = password_hash(filter_var($_POST['mdp1'],FILTER_SANITIZE_STRING),PASSWORD_DEFAULT,[ 'cost' => 12]);
+        $utilisateur->save();
+
+        $redirection = <<<END
+        <center>
+               <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Modification réussie.</p>
+               </br>
+               <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être dirigé vers votre profil.</p>
+        </center>
+END;
+
+        echo $redirection;
+        header("Refresh:3; url=profil");
+
+      } else {
+        $redirection = <<<END
+        <center>
+               <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Les mots de passes ne correspondent pas.</p>
+               </br>
+               <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de modification du mot de passe.</p>
+        </center>
+END;
+
+        echo $redirection;
+        header("Refresh:3; url=modifierMdp");
+
+      }
+    } else {
+      $redirection = <<<END
+      <center>
+             <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Ancien mot de passe incorrect.</p>
+             </br>
+             <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de modification du mot de passe.</p>
+      </center>
+END;
+
+      echo $redirection;
+      header("Refresh:3; url=modifierMdp");
+
     }
   }
 

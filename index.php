@@ -81,6 +81,24 @@ $app->post('/modifierProfil', function($request, $response, $next){
   }
 });
 
+$app->get('/modifierMdp', function($request, $response, $next){
+  if (isset($_COOKIE['CookieCocktails'])) {
+      $con = new ControleurUtilisateur();
+      $con->afficherModificationMdp();
+  } else {
+      return $response->withRedirect("accueil");
+  }
+});
+
+$app->post('/modifierMdp', function($request, $response, $next){
+  if (isset($_COOKIE['CookieCocktails'])) {
+      $con = new ControleurUtilisateur();
+      $con->modificationMdp();
+  } else {
+      return $response->withRedirect("accueil");
+  }
+});
+
 $app->get('/recette', function () use ($app){
   ControleurUtilisateur::testConnexion();
 

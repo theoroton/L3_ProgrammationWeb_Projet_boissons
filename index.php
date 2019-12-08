@@ -20,6 +20,8 @@ $db->bootEloquent();
 session_start();
 
 $app->get('/accueil', function () {
+  ControleurUtilisateur::testConnexion();
+
   $con = new ControleurUtilisateur();
   $con->afficherAccueil();
 });
@@ -44,39 +46,49 @@ $app->post('/inscription', function(){
   $con->inscription();
 });
 
-$app->get('/profil', function() use ($app){
+$app->get('/profil', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
       $con->afficherProfil();
   } else {
-      $app->redirect('/profil', '/accueil');
+      return $response->withRedirect("accueil");
   }
 });
 
-$app->get('/modifierProfil', function(){
-  $con = new ControleurUtilisateur();
-  $con->afficherModificationProfil();
+$app->get('/modifierProfil', function($request, $response, $next){
+  if (isset($_COOKIE['CookieCocktails'])) {
+      $con = new ControleurUtilisateur();
+      $con->afficherModificationProfil();
+  } else {
+      return $response->withRedirect("accueil");
+  }
 });
 
-$app->get('/recette', function () {
+$app->get('/recette', function () use ($app){
+  ControleurUtilisateur::testConnexion();
+
   if (isset($_GET['id'])) {
     $con = new ControleurRecettes();
     $con->afficherRecette();
   } else {
-    echo "Pas de recette";
+    //$app->redirect('/recette', '/accueil');
   }
 });
 
-$app->get('/ingredient', function () {
+$app->get('/ingredient', function ($request, $response, $next){
+  ControleurUtilisateur::testConnexion();
+
   if (isset($_GET['name'])) {
     $con = new ControleurIngredients();
     $con->afficherIngredient();
   } else {
-    echo "Pas d'ingrédient";
+    return $response->withRedirect("ingredient?name=Aliment");
   }
 });
 
 $app->get('/panier', function () {
+  ControleurUtilisateur::testConnexion();
+
   $con = new ControleurPanier();
   $con->afficherPanier();
 });

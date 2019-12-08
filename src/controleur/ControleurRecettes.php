@@ -28,7 +28,7 @@ class ControleurRecettes {
       }
 
     } else if (isset($_SESSION['favoris'])){
-      if (in_array($id,$_SESSION['favoris'])){
+      if (in_array($num,$_SESSION['favoris'])){
         $fav = true;
       }
 

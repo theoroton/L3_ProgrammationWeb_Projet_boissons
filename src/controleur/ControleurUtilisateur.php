@@ -23,6 +23,14 @@ class ControleurUtilisateur {
     $vue->render(2);
   }
 
+  public static function testConnexion(){
+    if (isset($_COOKIE['CookieCocktails'])) {
+      session_unset();
+    } else if (!isset($_SESSION['favoris'])){
+      $_SESSION['favoris'] = array();
+    }
+  }
+
   public function afficherProfil(){
     $cookie = unserialize($_COOKIE['CookieCocktails']);
     $id = $cookie['id'];
@@ -39,11 +47,6 @@ class ControleurUtilisateur {
   }
 
   public function afficherAccueil(){
-    if (isset($_COOKIE['CookieCocktails'])) {
-      session_unset();
-    } else if (!isset($_SESSION['favoris'])){
-      $_SESSION['favoris'] = array();
-    }
     $vue = new VueAccueil();
     $vue->render();
   }

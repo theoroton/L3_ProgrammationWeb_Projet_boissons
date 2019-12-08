@@ -107,7 +107,7 @@ END;
               </label>
             </p>
 
-            <p><span style="color:red">* informations obligatoires</span></p>
+            <p><span style="color:red">* Informations obligatoires</span></p>
 
             <p>
               <button id="bvalide" type="submit">S'inscrire</button>

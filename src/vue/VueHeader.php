@@ -7,6 +7,7 @@ class VueHeader
 {
     public function render()
     {
+        var_dump(unserialize($_COOKIE['CookieCocktails']));
         var_dump($_SESSION['favoris']);
         if (isset($_COOKIE['CookieCocktails'])){
           $liens = <<<END
@@ -16,7 +17,7 @@ END;
         } else {
           $liens = <<<END
             <a href="connexion">Connexion</a>
-          END;
+END;
         }
 
         $html = <<<END

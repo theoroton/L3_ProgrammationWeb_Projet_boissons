@@ -8,7 +8,7 @@ use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
 use \cocktails\controleur\ControleurConnexion;
-use \cocktails\vue\VueAccueil;
+use \cocktails\controleur\ControleurProfil;
 
 $db=new DB();
 $db->addConnection(parse_ini_file('src/conf/conf.ini'));
@@ -42,6 +42,11 @@ $app->post('/inscription', function(){
   $con->inscription();
 });
 
+$app->get('/profil', function(){
+  $con = new ControleurProfil();
+  $con->afficherProfil();
+});
+
 $app->get('/recette', function () {
   if (isset($_GET['id'])) {
     $con = new ControleurRecettes();
@@ -64,7 +69,5 @@ $app->get('/panier', function () {
   $con = new ControleurPanier();
   $con->afficherPanier();
 });
-
-//session_destroy();
 
 $app->run();

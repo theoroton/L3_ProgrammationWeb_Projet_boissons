@@ -280,6 +280,8 @@ END;
           <input id="bmodifierInfos" type="submit" value="Modifier le profil">
         </form>
 
+        <br>
+
         <form action="modifierMdp" method="get">
           <input id="bmodifierMdp" type="submit" value="Modifier le mot de passe">
         </form>
@@ -313,11 +315,13 @@ END;
         $content = $this->afficherModification();
         $title = "Modifier profil";
         $header = "";
+        break;
       }
       case 5 : {
         $content = $this->afficherModifMdp();
         $title = "Modifier le mot de passe";
         $header = "";
+        break;
       }
     }
 

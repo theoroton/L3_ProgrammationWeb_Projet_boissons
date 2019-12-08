@@ -7,8 +7,6 @@ class VueHeader
 {
     public function render()
     {
-        var_dump(unserialize($_COOKIE['CookieCocktails']));
-        var_dump($_SESSION['favoris']);
         if (isset($_COOKIE['CookieCocktails'])){
           $liens = <<<END
             <a href="profil">Profil</a>

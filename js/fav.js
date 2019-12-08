@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     $.ajax({
       method: "POST",
-      url: './js/modifyFavoris.php',
+      url: 'js/modifyFavoris.php',
       data: {
         "callAddFav": id
       },

@@ -2,7 +2,15 @@
 
 namespace cocktails\vue;
 
-class VueConnexion {
+use \cocktails\vue\VueHeader;
+
+class VueUtilisateur {
+
+  private $utilisateur;
+
+  public function __construct($u){
+    $this->utilisateur = $u;
+  }
 
   private function afficherConnexion(){
     $content = <<<END
@@ -118,16 +126,62 @@ END;
     return $content;
   }
 
+  private function afficherProfil(){
+    $login = $this->utilisateur->login;
+    $nom = $this->utilisateur->nom;
+    $prenom = $this->utilisateur->prenom;
+    $sexe = $this->utilisateur->sexe;
+    if ($sexe == 'H') {
+      $sexe = 'Homme';
+    } else if ($sexe == 'F') {
+      $sexe = 'Femme';
+    }
+    $email = $this->utilisateur->email;
+    $dateNaiss = $this->utilisateur->dateNaiss;
+    $adresse = $this->utilisateur->adresse;
+    $codePostal = $this->utilisateur->codePostal;
+    $ville = $this->utilisateur->ville;
+    $tel = $this->utilisateur->tel;
+
+    $content = <<<END
+        <p><strong>Login : </strong>$login</p>
+        <p><strong>Nom : </strong>$nom</p>
+        <p><strong>Prénom : </strong>$prenom</p>
+        <p><strong>Sexe : </strong>$sexe</p>
+        <p><strong>Email : </strong>$email</p>
+        <p><strong>Date de naissance : </strong>$dateNaiss</p>
+        <p><strong>Adresse : </strong>$adresse</p>
+        <p><strong>Code postal : </strong>$codePostal</p>
+        <p><strong>Ville : </strong>$ville</p>
+        <p><strong>Téléphone : </strong>$tel</p>
+
+        <form action="modifierProfil" method="get">
+          <button id="bmodifier" type="submit">Modifier le profil</button>
+        </form>
+END;
+
+    return $content;
+  }
+
   public function render($type){
     switch ($type) {
       case 1 : {
         $content = $this->afficherConnexion();
         $title = "Connexion";
+        $header = "";
         break;
       }
       case 2 : {
         $content = $this->afficherInscription();
         $title = "Inscription";
+        $header = "";
+        break;
+      }
+      case 3 : {
+        $content = $this->afficherProfil();
+        $title = "Profil";
+        $vue = new VueHeader();
+        $header = $vue->render();
         break;
       }
     }
@@ -138,7 +192,7 @@ END;
         <meta charset="utf-8">
         <title>$title</title>
       </head>
-
+      $header
       <body>
 
       $content

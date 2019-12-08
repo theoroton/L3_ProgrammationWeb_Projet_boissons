@@ -2,11 +2,11 @@
 
 namespace cocktails\controleur;
 
-use \cocktails\vue\VueConnexion;
+use \cocktails\vue\VueUtilisateur;
 use \cocktails\vue\VueAccueil;
 use \cocktails\models\Utilisateur;
 
-class ControleurConnexion {
+class ControleurUtilisateur {
 
   public function afficherConnexion(){
     if (isset($_COOKIE['CookieCocktails'])){
@@ -14,13 +14,28 @@ class ControleurConnexion {
       setcookie("CookieCocktails", "", time()-3600);
     }
 
-    $vue = new VueConnexion();
+    $vue = new VueUtilisateur(NULL);
     $vue->render(1);
   }
 
   public function afficherInscription(){
-    $vue = new VueConnexion();
+    $vue = new VueUtilisateur(NULL);
     $vue->render(2);
+  }
+
+  public function afficherProfil(){
+    $cookie = unserialize($_COOKIE['CookieCocktails']);
+    $id = $cookie['id'];
+    $utilisateur = Utilisateur::where('idUtilisateur', '=', $id)->first();
+
+    $vue = new VueUtilisateur($utilisateur);
+    $vue->render(3);
+  }
+
+  public function afficherModificationProfil(){
+    echo 'modif';
+    //$vue = new VueUtilisateur($utilisateur);
+    //$vue->render(4);
   }
 
   public function afficherAccueil(){

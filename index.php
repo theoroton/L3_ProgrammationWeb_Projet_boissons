@@ -36,14 +36,22 @@ $app->post('/connexion', function(){
   $con->connexion();
 });
 
-$app->get('/inscription', function(){
-  $con = new ControleurUtilisateur();
-  $con->afficherInscription();
+$app->get('/inscription', function($request, $response, $next){
+  if (!isset($_COOKIE['CookieCocktails'])) {
+      $con = new ControleurUtilisateur();
+      $con->afficherInscription();
+  } else {
+      return $response->withRedirect("accueil");
+  }
 });
 
-$app->post('/inscription', function(){
-  $con = new ControleurUtilisateur();
-  $con->inscription();
+$app->post('/inscription', function($request, $response, $next){
+  if (!isset($_COOKIE['CookieCocktails'])) {
+      $con = new ControleurUtilisateur();
+      $con->inscription();
+  } else {
+      return $response->withRedirect("accueil");
+  }
 });
 
 $app->get('/profil', function($request, $response, $next){
@@ -59,6 +67,15 @@ $app->get('/modifierProfil', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
       $con->afficherModificationProfil();
+  } else {
+      return $response->withRedirect("accueil");
+  }
+});
+
+$app->post('/modifierProfil', function($request, $response, $next){
+  if (isset($_COOKIE['CookieCocktails'])) {
+      //$con = new ControleurUtilisateur();
+      //$con->afficherModificationProfil();
   } else {
       return $response->withRedirect("accueil");
   }

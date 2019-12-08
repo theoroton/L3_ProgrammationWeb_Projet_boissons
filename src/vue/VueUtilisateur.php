@@ -73,9 +73,7 @@ END;
 
             <span>
              <label>Sexe</label>
-
              <input type="radio" name="sexe" value="F"> Femme
-
              <input type="radio" name="sexe" value="H"> Homme
             </span>
 
@@ -87,31 +85,31 @@ END;
 
             <p>
               <label> Date de naissance
-                  <input type="date" name="date_naissance"/>
+                  <input type="date" name="date_naissance">
               </label>
             </p>
 
             <p>
               <label> Adresse
-                  <input type="text" name="adresse"/>
+                  <input type="text" name="adresse">
               </label>
             </p>
 
             <p>
               <label> Code postal
-                  <input type="text" name="code_postal"/>
+                  <input type="text" name="code_postal">
               </label>
             </p>
 
             <p>
               <label> Ville
-                  <input type="text" name="ville"/>
+                  <input type="text" name="ville">
               </label>
             </p>
 
             <p>
               <label> Numéro de téléphone
-                  <input type="text" name="tel"/>
+                  <input type="text" name="tel">
               </label>
             </p>
 
@@ -119,6 +117,90 @@ END;
 
             <p>
               <button id="bvalide" type="submit">S'inscrire</button>
+            </p>
+    </form>
+END;
+
+    return $content;
+  }
+
+  private function afficherModification(){
+    $login = $this->utilisateur->login;
+    $nom = $this->utilisateur->nom;
+    $prenom = $this->utilisateur->prenom;
+    $sexe = $this->utilisateur->sexe;
+    if ($sexe == 'H') {
+      $sexeH = 'checked';
+      $sexeF = '';
+    } else if ($sexe == 'F') {
+      $sexeF = 'checked';
+      $sexeH = '';
+    }
+    $email = $this->utilisateur->email;
+    $dateNaiss = $this->utilisateur->dateNaiss;
+    $adresse = $this->utilisateur->adresse;
+    $codePostal = $this->utilisateur->codePostal;
+    $ville = $this->utilisateur->ville;
+    $tel = $this->utilisateur->tel;
+
+    $content = <<<END
+    <form id="modification" method="post" action="modifierProfil">
+            <p>
+              <label> Nom
+                  <input type="text" name="nom" value=$nom>
+              </label>
+            </p>
+
+            <p>
+              <label> Prénom
+                  <input type="text" name="prenom" value=$prenom>
+              </label>
+            </p>
+
+            <span>
+             <label>Sexe</label>
+             <input type="radio" name="sexe" value="F" $sexeF> Femme
+             <input type="radio" name="sexe" value="H" $sexeH> Homme
+            </span>
+
+            <p>
+              <label> Email
+                  <input type="text" name="email" value=$email>
+              </label>
+            </p>
+
+            <p>
+              <label> Date de naissance
+                  <input type="date" name="date_naissance" value=$dateNaiss>
+              </label>
+            </p>
+
+            <p>
+              <label> Adresse
+                  <input type="text" name="adresse" value=$adresse>
+              </label>
+            </p>
+
+            <p>
+              <label> Code postal
+                  <input type="text" name="code_postal" value=$codePostal>
+              </label>
+            </p>
+
+            <p>
+              <label> Ville
+                  <input type="text" name="ville" value=$ville>
+              </label>
+            </p>
+
+            <p>
+              <label> Numéro de téléphone
+                  <input type="text" name="tel" value=$tel>
+              </label>
+            </p>
+
+            <p>
+              <button id="bvalide" type="submit">Modifier</button>
             </p>
     </form>
 END;
@@ -183,6 +265,11 @@ END;
         $vue = new VueHeader();
         $header = $vue->render();
         break;
+      }
+      case 4 : {
+        $content = $this->afficherModification();
+        $title = "Modifier profil";
+        $header = "";
       }
     }
 

@@ -41,14 +41,52 @@ class ControleurUtilisateur {
   }
 
   public function afficherModificationProfil(){
-    echo 'modif';
-    //$vue = new VueUtilisateur($utilisateur);
-    //$vue->render(4);
+    $cookie = unserialize($_COOKIE['CookieCocktails']);
+    $id = $cookie['id'];
+    $utilisateur = Utilisateur::where('idUtilisateur', '=', $id)->first();
+    
+    $vue = new VueUtilisateur($utilisateur);
+    $vue->render(4);
   }
 
   public function afficherAccueil(){
     $vue = new VueAccueil();
     $vue->render();
+  }
+
+  private function verifMdp(){
+    $valide = true;
+
+    if ($_POST['mdp1'] != $_POST['mdp2']){
+      $valide = false;
+    }
+
+    return $valide;
+  }
+
+  private function verifInfos(){
+    $valide = true;
+
+    $incorrectes = "";
+
+    if (isset($_POST['mdp1']) && isset($_POST['mdp2'])){
+      if (!$this->verifMdp()){
+        $valide = false;
+        $incorrectes .= "Les mots de passes ne correspondent pas<br>";
+      }
+    }
+
+    if (strlen($_POST['tel']) > 0){
+      if (strlen($_POST['tel']) != 10){
+        $valide = false;
+        $incorrectes .= "Le numéro de téléphone doit faire 10 caractères<br>";
+      } else if (!is_numeric($_POST['tel'])){
+        $valide = false;
+        $incorrectes .= "Le numéro de téléphone doit être constituer uniquement de chiffres";
+      }
+    }
+
+    return array($valide,$incorrectes);
   }
 
   public function connexion(){
@@ -98,24 +136,9 @@ END;
   }
 
   public function inscription(){
-    $valide = true;
-
-    $incorrectes = "";
-
-    if ($_POST['mdp1'] != $_POST['mdp2']){
-      $valide = false;
-      $incorrectes .= "Les mots de passes ne correspondent pas<br>";
-    }
-
-    if (strlen($_POST['tel']) > 0){
-      if (strlen($_POST['tel']) != 10){
-        $valide = false;
-        $incorrectes .= "Le numéro de téléphone doit faire 10 caractères<br>";
-      } else if (!is_numeric($_POST['tel'])){
-        $valide = false;
-        $incorrectes .= "Le numéro de téléphone doit être constituer uniquement de chiffres";
-      }
-    }
+    $array = $this->verifInfos();
+    $valide = $array[0];
+    $incorrectes = $array[1];
 
     $utilisateur = Utilisateur::where('login', '=', $_POST['login'])->first();
 

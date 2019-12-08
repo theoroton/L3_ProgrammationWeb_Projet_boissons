@@ -146,6 +146,13 @@ END;
     $content = <<<END
     <form id="modification" method="post" action="modifierProfil">
             <p>
+              <label> Login
+                  <input type="text" name="login" value=$login required>
+                  <span style="color:red"> * requis</span>
+              </label>
+            </p>
+
+            <p>
               <label> Nom
                   <input type="text" name="nom" value=$nom>
               </label>

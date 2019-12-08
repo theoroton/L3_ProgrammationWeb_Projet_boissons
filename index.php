@@ -74,8 +74,8 @@ $app->get('/modifierProfil', function($request, $response, $next){
 
 $app->post('/modifierProfil', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
-      //$con = new ControleurUtilisateur();
-      //$con->afficherModificationProfil();
+      $con = new ControleurUtilisateur();
+      $con->modification();
   } else {
       return $response->withRedirect("accueil");
   }

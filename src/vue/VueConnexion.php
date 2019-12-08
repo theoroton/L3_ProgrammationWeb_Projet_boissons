@@ -23,6 +23,8 @@ class VueConnexion {
               <button id="bvalide" type="submit">Se connecter</button>
             </p>
     </form>
+
+    <a href="inscription">Pas de compte ? S'inscrire</a><br>
 END;
 
     return $content;
@@ -32,19 +34,19 @@ END;
     $content = <<<END
     <form id="inscription" method="post" action="inscription">
             <p>
-              <label> Login
+              <label> Login <span style="color:red">*</span>
                   <input type="text" name="login" required>
               </label>
             </p>
 
             <p>
-              <label> Mot de passe
+              <label> Mot de passe <span style="color:red">*</span>
                   <input type="password" name="mdp1" required>
               </label>
             </p>
 
             <p>
-              <label> Confirmer le mot de passe
+              <label> Confirmer le mot de passe <span style="color:red">*</span>
                   <input type="password" name="mdp2" required>
               </label>
             </p>
@@ -64,9 +66,9 @@ END;
             <span>
              <label>Sexe</label>
 
-             <input type="radio" name="sexe" value="f"> Femme
+             <input type="radio" name="sexe" value="F"> Femme
 
-             <input type="radio" name="sexe" value="h"> Homme
+             <input type="radio" name="sexe" value="H"> Homme
             </span>
 
             <p>
@@ -104,6 +106,8 @@ END;
                   <input type="text" name="tel"/>
               </label>
             </p>
+
+            <p><span style="color:red">* informations obligatoires</span></p>
 
             <p>
               <button id="bvalide" type="submit">S'inscrire</button>

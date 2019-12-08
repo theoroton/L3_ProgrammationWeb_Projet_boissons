@@ -18,11 +18,8 @@ $db->bootEloquent();
 session_start();
 
 $app->get('/accueil', function () {
-  if (!isset($_SESSION['favoris'])) {
-    $_SESSION['favoris'] = array();
-  }
-  $vue = new VueAccueil();
-  $vue->render();
+  $con = new ControleurConnexion();
+  $con->afficherAccueil();
 });
 
 $app->get('/connexion', function(){

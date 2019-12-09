@@ -135,6 +135,9 @@ END;
     } else if ($sexe == 'F') {
       $sexeF = 'checked';
       $sexeH = '';
+    } else {
+      $sexeF = '';
+      $sexeH = '';
     }
     $email = $this->utilisateur->email;
     $dateNaiss = $this->utilisateur->dateNaiss;

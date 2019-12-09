@@ -38,4 +38,3 @@ END;
         return $html;
     }
 }
-//href=\"ingredient?name=Aliment\">Ingrédient</a><br>"

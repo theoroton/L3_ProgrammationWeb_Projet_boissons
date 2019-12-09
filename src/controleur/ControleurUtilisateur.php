@@ -153,7 +153,9 @@ END;
 
     $utilisateur->nom = filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
     $utilisateur->prenom = filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
-    $utilisateur->sexe = filter_var($_POST['sexe'],FILTER_SANITIZE_STRING);
+    if (isset($_POST['sexe'])){
+      $utilisateur->sexe = filter_var($_POST['sexe'],FILTER_SANITIZE_STRING);
+    }
     $utilisateur->email = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
     $utilisateur->dateNaiss = filter_var($_POST['date_naissance'],FILTER_SANITIZE_STRING);
     $utilisateur->adresse = filter_var($_POST['adresse'],FILTER_SANITIZE_STRING);

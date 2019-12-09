@@ -151,17 +151,59 @@ END;
       $utilisateur = Utilisateur::where('idUtilisateur', '=', $id)->first();
     }
 
-    $utilisateur->nom = filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
-    $utilisateur->prenom = filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
+    if (strlen($_POST['nom'])  > 0){
+      $utilisateur->nom = filter_var($_POST['nom'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->nom = NULL;
+    }
+
+    if (strlen($_POST['prenom'])  > 0){
+      $utilisateur->prenom = filter_var($_POST['prenom'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->prenom = NULL;
+    }
+
     if (isset($_POST['sexe'])){
       $utilisateur->sexe = filter_var($_POST['sexe'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->sexe = NULL;
     }
-    $utilisateur->email = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
-    $utilisateur->dateNaiss = filter_var($_POST['date_naissance'],FILTER_SANITIZE_STRING);
-    $utilisateur->adresse = filter_var($_POST['adresse'],FILTER_SANITIZE_STRING);
-    $utilisateur->codePostal = filter_var($_POST['code_postal'],FILTER_SANITIZE_STRING);
-    $utilisateur->ville = filter_var($_POST['ville'],FILTER_SANITIZE_STRING);
-    $utilisateur->tel = filter_var($_POST['tel'],FILTER_SANITIZE_STRING);
+
+    if (strlen($_POST['email'])  > 0){
+      $utilisateur->email = filter_var($_POST['email'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->email = NULL;
+    }
+
+    if (strlen($_POST['date_naissance']) > 0){
+      $utilisateur->dateNaiss = filter_var($_POST['date_naissance'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->dateNaiss = NULL;
+    }
+
+    if (strlen($_POST['adresse'])  > 0){
+      $utilisateur->adresse = filter_var($_POST['adresse'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->adresse = NULL;
+    }
+
+    if (strlen($_POST['code_postal']) > 0){
+      $utilisateur->codePostal = filter_var($_POST['code_postal'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->codePostal = NULL;
+    }
+
+    if (strlen($_POST['ville'])  > 0){
+      $utilisateur->ville = filter_var($_POST['ville'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->ville = NULL;
+    }
+
+    if (strlen($_POST['tel'])  > 0){
+      $utilisateur->tel = filter_var($_POST['tel'],FILTER_SANITIZE_STRING);
+    } else {
+      $utilisateur->tel = NULL;
+    }
 
     $utilisateur->save();
   }

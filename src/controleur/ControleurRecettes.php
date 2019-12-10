@@ -4,7 +4,9 @@ namespace cocktails\controleur;
 
 use \cocktails\models\Recette;
 use \cocktails\models\Favori;
+use \cocktails\models\Data;
 use \cocktails\vue\VueRecette;
+use \cocktails\vue\VueRecherche;
 
 class ControleurRecettes {
 
@@ -37,6 +39,17 @@ class ControleurRecettes {
 
     $vue = new VueRecette($num, $titre, $ingrs, $preparation, $ingredients_requis, $image, $fav);
     $vue->render();
+  }
+
+  public function afficherRecherche(){
+    $ingredients = Data::getIngredients();
+
+    $vue = new VueRecherche($ingredients);
+    $vue->render();
+  }
+
+  public function recherche(){
+    echo 'test';
   }
 
 }

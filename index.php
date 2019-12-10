@@ -10,7 +10,6 @@ use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
 use \cocktails\controleur\ControleurUtilisateur;
-use \cocktails\controleur\ControleurProfil;
 
 $db=new DB();
 $db->addConnection(parse_ini_file('src/conf/conf.ini'));
@@ -99,14 +98,32 @@ $app->post('/modifierMdp', function($request, $response, $next){
   }
 });
 
-$app->get('/recette', function () use ($app){
+$app->get('/recettes', function(){
+  ControleurUtilisateur::testConnexion();
+
+  $con = new ControleurRecettes();
+  $con->afficherRecherche();
+});
+
+$app->get('/search', function(){
+  echo 'test';
+  if (isset($_SESSION['souhaites'])){
+    echo "<pre>" , var_dump($_SESSION['souhaites']) , "</pre>";
+  }
+
+  if (isset($_SESSION['souhaites'])){
+    echo "<pre>" , var_dump($_SESSION['nonsouhaites']) , "</pre>";
+  }
+});
+
+$app->get('/recette', function ($request, $response, $next) use ($app){
   ControleurUtilisateur::testConnexion();
 
   if (isset($_GET['id'])) {
     $con = new ControleurRecettes();
     $con->afficherRecette();
   } else {
-    //$app->redirect('/recette', '/accueil');
+    return $response->withRedirect("recettes");
   }
 });
 

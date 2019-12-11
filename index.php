@@ -105,18 +105,14 @@ $app->get('/recettes', function(){
   $con->afficherRecherche();
 });
 
-$app->get('/search', function(){
-  echo 'test';
-  if (isset($_SESSION['souhaites'])){
-    echo "<pre>" , var_dump($_SESSION['souhaites']) , "</pre>";
-  }
+$app->get('/search', function (){
+  ControleurUtilisateur::testConnexion();
 
-  if (isset($_SESSION['souhaites'])){
-    echo "<pre>" , var_dump($_SESSION['nonsouhaites']) , "</pre>";
-  }
+  $con = new ControleurRecettes();
+  $con->recherche();
 });
 
-$app->get('/recette', function ($request, $response, $next) use ($app){
+$app->get('/recette', function ($request, $response, $next){
   ControleurUtilisateur::testConnexion();
 
   if (isset($_GET['id'])) {

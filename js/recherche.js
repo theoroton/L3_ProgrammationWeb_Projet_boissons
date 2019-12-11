@@ -157,7 +157,6 @@ $(document).ready(function(){
 				"nonsouhaites": nonsouhaites
       },
       success:function(data){
-				console.log(data);
 				window.location.href = "search";
 			}
     });

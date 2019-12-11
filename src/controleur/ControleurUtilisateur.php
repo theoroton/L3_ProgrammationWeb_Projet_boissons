@@ -25,7 +25,7 @@ class ControleurUtilisateur {
 
   public static function testConnexion(){
     if (isset($_COOKIE['CookieCocktails'])) {
-      session_unset();
+      $_SESSION['favoris'] = null;
     } else if (!isset($_SESSION['favoris'])){
       $_SESSION['favoris'] = array();
     }

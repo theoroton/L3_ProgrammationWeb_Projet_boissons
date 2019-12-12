@@ -36,7 +36,6 @@ class ControleurRecettes {
         if (in_array($num,$_SESSION['favoris'])){
           $fav = true;
         }
-
       }
 
 

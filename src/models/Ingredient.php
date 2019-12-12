@@ -40,7 +40,8 @@ class Ingredient extends Data {
     foreach ($Recettes as $key => $value) {
       if (in_array($this->getCle(), $value['index'])){
         $recettesAvecIngredient[] = array('id' => $key,
-                                          'titre' => $value['titre']);
+                                          'titre' => $value['titre'],
+                                          'ingredient' => $this->getCle());
       }
     }
 

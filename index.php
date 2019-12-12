@@ -98,14 +98,28 @@ $app->post('/modifierMdp', function($request, $response, $next){
   }
 });
 
-$app->get('/recette', function () use ($app){
+$app->get('/recettes', function(){
+  ControleurUtilisateur::testConnexion();
+
+  $con = new ControleurRecettes();
+  $con->afficherRecherche();
+});
+
+$app->get('/search', function (){
+  ControleurUtilisateur::testConnexion();
+
+  $con = new ControleurRecettes();
+  $con->recherche();
+});
+
+$app->get('/recette', function ($request, $response, $next){
   ControleurUtilisateur::testConnexion();
 
   if (isset($_GET['id'])) {
     $con = new ControleurRecettes();
     $con->afficherRecette();
   } else {
-    //$app->redirect('/recette', '/accueil');
+    return $response->withRedirect("recettes");
   }
 });
 

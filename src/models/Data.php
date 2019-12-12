@@ -13,15 +13,15 @@ abstract class Data
     $this->cle = $cle;
   }
 
-  public function getRecettes()
+  public static function getRecettes()
   {
-    require('src/Donnees.inc.php');
+    require('src/data/Donnees.inc.php');
     return $Recettes;
   }
 
-  public function getIngredients()
+  public static function getIngredients()
   {
-    require('src/Donnees.inc.php');
+    require('src/data/Donnees.inc.php');
     return $Hierarchie;
   }
 

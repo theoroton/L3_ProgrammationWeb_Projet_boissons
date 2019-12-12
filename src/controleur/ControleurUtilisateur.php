@@ -25,7 +25,7 @@ class ControleurUtilisateur {
 
   public static function testConnexion(){
     if (isset($_COOKIE['CookieCocktails'])) {
-      session_unset();
+      $_SESSION['favoris'] = null;
     } else if (!isset($_SESSION['favoris'])){
       $_SESSION['favoris'] = array();
     }
@@ -278,7 +278,7 @@ END;
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être dirigé vers votre profil.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=profil");
@@ -291,7 +291,7 @@ END;
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de modification du profil.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=modifierProfil");
@@ -304,7 +304,7 @@ END;
              </br>
              <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de modification du profil.</p>
       </center>
-  END;
+END;
 
       echo $redirection;
       header("Refresh:3; url=modifierProfil");

@@ -26,7 +26,7 @@ END;
             <nav>
                     <a href="accueil">Accueil</a>
                     <a href="ingredient?name=Aliment">Ingrédients</a>
-                    <a href="#">Recettes</a>
+                    <a href="recettes">Recettes</a>
                     <a href="panier">Mes recettes préférées</a>
                     $liens
             </nav>

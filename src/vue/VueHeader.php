@@ -19,6 +19,8 @@ END;
         }
 
         $html = <<<END
+        
+        <link rel="stylesheet" type="text/css" href="css/vueHeader.css">
         <header>
 
         <h1>Cocktails</h1>

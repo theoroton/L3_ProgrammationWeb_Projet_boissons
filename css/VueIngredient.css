@@ -51,106 +51,68 @@ html {
     /* overflow: auto; */
 }
 
-#contenu {
-    border: solid black;
-    width: 70%;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-#ingredients {
-    text-align: center;
-}
-
-#ingredients * {
-    margin-left: 5%;
-    margin-right: 5%;
-}
-
-.label {
-    margin-top: 10px;
-    border: 2px;
-    width: 35%;
-    display: inline-block;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.divContenu {
-    border: solid black 2px;
-    width: 35%;
-    height: 150px;
-    overflow: auto;
-    display: inline-block;
-}
-
-.ingr {
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-.ingr:hover {
-    background-color: #D3D3D3;
-    cursor: pointer;
-}
-
-#reinit {
-    width: 16%;
-    margin-left: 42%;
-    margin-right: 42%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#recherche {
-    text-align: center;
-}
-
-#search {
-    width: 40%;
-}
-
-#results {
-    display: none;
-    position: absolute;
-    width: 26%;
-    max-height: 200px;
-    left: 37%;
-    overflow: auto;
-    border: 1px solid #AAA;
-    border-top-width: 0;
-    background-color: #FFF;
-}
-
-#results div:hover {
-    background-color: #D3D3D3;
-    cursor: pointer;
-}
-
-#erreur {
-    height: 20px;
-    margin-top: 5px;
-    color: red;
-}
-
-#actions {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#actions * {
+.ing-show {
+    padding: 5px;
+    /* border: 1px solid #000000; */
+    display: flexbox;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #dbc9cc;
+    margin-top: 15px;
+    color: #000;
+    font-size: 1.3em;
+    flex-wrap: wrap;
     width: 20%;
-    margin-left: 3%;
-    margin-right: 3%;
+    /* height: ; */
+    /* box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); */
+    word-wrap: break-word;
+    /* overflow: auto; */
 }
 
-#effectuerRecherche {
-    width: 24%;
-    margin-left: 38%;
-    margin-right: 38%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: solid black 1px;
+.recette {
+    display: inline-block;
+    width: 30%;
+    height: 85%;
+    margin: auto;
+    /* background-color: #ffe5ea; */
+    /* border: 1px solid #b2a0a3; */
+    /* margin-top: 40px; */
+    padding: 20px;
+    word-wrap: break-word;
+    /* Depassement horizontal*/
+    text-align: center;
+    font-size: 1.3em;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    color: #000;
+}
+
+article {
+    display: block;
+    width: 150px;
+    min-height: 200px;
+    margin: auto;
+    /*Depassement vertical*/
+    /* word-wrap: break-word; */
+    /* Depassement horizontal*/
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    border: 1px solid red;
+}
+
+article h1 {
+    font-size: 1.6em;
+    text-align: left;
+    opacity: 1;
+    color: #8b008b;
+}
+
+article a {
+    color: #8b008b;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: rgb(95, 8, 73);
 }

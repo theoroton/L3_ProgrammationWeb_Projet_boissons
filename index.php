@@ -10,7 +10,6 @@ use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
 use \cocktails\controleur\ControleurUtilisateur;
-use \cocktails\controleur\ControleurProfil;
 
 $db=new DB();
 $db->addConnection(parse_ini_file('src/conf/conf.ini'));
@@ -129,3 +128,4 @@ $app->get('/panier', function () {
 });
 
 $app->run();
+?>

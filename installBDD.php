@@ -30,15 +30,17 @@ $Sql="
        PRIMARY KEY(idUtilisateur)
     );
 
-
     CREATE TABLE Favori (
-       idFavori INT NOT NULL AUTO_INCREMENT,
-       idUtilisateur INT,
-       numRecette INT,
-       PRIMARY KEY(idFavori),
-       Foreign Key (idUtilisateur) References utilisateur(idUtilisateur)
-    )";
+      idUtilisateur INT NOT NULL, 
+      idFavori INT NOT NULL AUTO_INCREMENT,
+      numRecette INT,
+      PRIMARY KEY(idFavori),
+      Foreign Key FK (idUtilisateur) References Utilisateur(idUtilisateur)
+    )" ;
 
-foreach(explode(';',$Sql) as $Requete) query($mysqli,$Requete);
+foreach(explode(';',$Sql) as $Requete){
+  echo $Requete;
+  query($mysqli,$Requete);
+} 
 
 mysqli_close($mysqli);

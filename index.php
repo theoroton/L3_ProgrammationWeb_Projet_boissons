@@ -143,3 +143,4 @@ $app->get('/panier', function () {
 });
 
 $app->run();
+?>

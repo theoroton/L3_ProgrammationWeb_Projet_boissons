@@ -25,11 +25,13 @@ class VueIngredient
     $vue = new VueHeader();
     $header = $vue->render();
 
+    $content = "";
+
     ///////////////////////////////////////////////////////////////////////
     //Parents
     ///////////////////////////////////////////////////////////////////////
 
-    $content = <<<END
+    $content .= <<<END
       <div class="ing-show">
       <article>
             <h2>Parents</h2>
@@ -45,7 +47,9 @@ END;
       }
     }
 
-    $content .= "</article>";
+    $content .= <<<END
+    </article>
+END;
 
     ///////////////////////////////////////////////////////////////////////
     //Nom & chemin
@@ -54,11 +58,13 @@ END;
     $content .= <<<END
     <article>
       <h2>Ingrédient</h2>
-      <strong>Nom :</strong> $this->nom
+      <strong>Nom :</strong> $this->nom 
       <br><br>
       <strong>Chemin :</strong>
       <br><br>
     </article>
+END;
+    $content .= <<<END
 END;
 
     ///////////////////////////////////////////////////////////////////////
@@ -76,17 +82,18 @@ END;
     } else {
       foreach ($this->fils as $value) {
         $content .= <<<END
-        <a href="ingredient?name=$value">$value</a><br>
+      <a href="ingredient?name=$value">$value</a>
 END;
       }
     }
-    $content .= "</article></div>";
-
-
     $content .= <<<END
-    <div class="recette">
-      <h2>Recettes :</h2> <br>
-
+    </article>
+    </div>
+END;
+    $content .= <<<END
+<div class="recette">
+  <h2>Recettes :</h2> <br>
+        
 END;
 
     if (sizeof($this->recettesLiees) == 0) {
@@ -96,18 +103,19 @@ END;
         $id = $value['id'];
         $titre = $value['titre'];
         $content .= <<<END
-        <a href="recette?id=$id">$titre</a><br>
+      <a href="recette?id=$id">$titre</a><br>
+    </div>
 END;
+//<a href="ingredient?name=Aliment">Ingrédients</a>
       }
     }
-
-    $content .= "</div>";
 
     $html = <<<END
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
           <title>Cocktails</title>
+          <link rel="stylesheet" type="text/css" href="../css/cocktails.css">
           <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
           <link rel="stylesheet" href="style/cocktails.css">

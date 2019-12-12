@@ -107,7 +107,7 @@ class ControleurUtilisateur {
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être dirigé vers la page d'accueil.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=accueil");
@@ -119,7 +119,7 @@ class ControleurUtilisateur {
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de connexion.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=connexion");
@@ -140,7 +140,7 @@ END;
 
   }
 
-  private function operationUtilisateur($add){
+  public function operationUtilisateur($add){
     if ($add) {
       $utilisateur = new Utilisateur();
       $utilisateur->login = filter_var($_POST['login'],FILTER_SANITIZE_STRING);
@@ -226,7 +226,7 @@ END;
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être dirigé vers la page de connexion.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=connexion");
@@ -238,7 +238,7 @@ END;
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page d'inscription.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=inscription");
@@ -278,7 +278,7 @@ END;
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être dirigé vers votre profil.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=profil");
@@ -291,7 +291,7 @@ END;
                </br>
                <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de modification du profil.</p>
         </center>
-  END;
+END;
 
         echo $redirection;
         header("Refresh:3; url=modifierProfil");
@@ -304,7 +304,7 @@ END;
              </br>
              <p style='font-family: Georgia, Times, serif;font-size:25px;margin-top:200px'>Vous allez être redirigé vers la page de modification du profil.</p>
       </center>
-  END;
+END;
 
       echo $redirection;
       header("Refresh:3; url=modifierProfil");

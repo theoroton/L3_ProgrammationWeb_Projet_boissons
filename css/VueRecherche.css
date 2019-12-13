@@ -37,11 +37,6 @@
   margin-bottom: 5px;
 }
 
-.ingr:hover {
-  background-color: #D3D3D3;
-  cursor: pointer;
-}
-
 #reinit {
   width: 16%;
   margin-left: 42%;

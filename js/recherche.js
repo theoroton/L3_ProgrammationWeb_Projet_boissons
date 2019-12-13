@@ -1,19 +1,18 @@
 $(document).ready(function(){
 
-	var searchElement = document.getElementById('search');
+	var search = document.getElementById('search');
 	var results = document.getElementById('results');
 	var previousRequest;
-  var previousValue = searchElement.value;
+  var previousValue = search.value;
 
-	function getResults(keywords) { // Effectue une requête et récupère les résultats
+	function getResults(mot) {
 
 	    var xhr = new XMLHttpRequest();
-	    xhr.open('GET', 'js/autocomplete.php?nom='+ encodeURIComponent(keywords));
+	    xhr.open('GET', 'js/autocomplete.php?nom='+ encodeURIComponent(mot));
 
     	xhr.addEventListener('readystatechange', function() {
         	if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 	            displayResults(xhr.responseText);
-
         	}
 	    });
 
@@ -23,21 +22,18 @@ $(document).ready(function(){
 
 	}
 
-	function displayResults(response) { // Affiche les résultats d'une requête
+	function displayResults(rep) {
 
-    	results.style.display = response.length ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
+	    if (rep.length) {
+				  results.style.display = 'block';
 
-	    if (response.length) { // On ne modifie les résultats que si on en a obtenu
+	        rep = rep.split('|');
+	        results.innerHTML = '';
 
-	        response = response.split('|');
-	        var responseLen = response.length;
-
-	        results.innerHTML = ''; // On vide les résultats
-
-	        for (var i = 0, div ; i < responseLen ; i++) {
+	        for (var i = 0, div ; i < rep.length ; i++) {
 
             	div = results.appendChild(document.createElement('div'));
-            	div.innerHTML = response[i];
+            	div.innerHTML = rep[i];
 
             	div.addEventListener('click', function(e) {
                 	chooseResult(e.target);
@@ -45,31 +41,33 @@ $(document).ready(function(){
 
 	        }
 
-	    }
+	    } else {
+					results.style.display = 'none';
+			}
 
 	}
 
-	function chooseResult(result) { // Choisi un des résultats d'une requête et gère tout ce qui y est attaché
+	function chooseResult(res) {
 
-	    searchElement.value = previousValue = result.innerHTML; // On change le contenu du champ de recherche et on enregistre en tant que précédente valeur
-	    results.style.display = 'none'; // On cache les résultats
-	    result.className = ''; // On supprime l'effet de focus
-	    searchElement.focus(); // Si le résultat a été choisi par le biais d'un clique alors le focus est perdu, donc on le réattribue
+	    search.value = previousValue = res.innerHTML;
+	    results.style.display = 'none';
+	    res.className = '';
+	    search.focus();
 
 	}
 
-	searchElement.addEventListener('keyup', function(e) {
+	search.addEventListener('keyup', function(e) {
 			document.getElementById('erreur').innerHTML = "";
 
-      if (searchElement.value != previousValue) { // Si le contenu du champ de recherche a changé
+      if (search.value != previousValue) {
 
-	        previousValue = searchElement.value;
+	        previousValue = search.value;
 
 	        if (previousRequest && previousRequest.readyState < XMLHttpRequest.DONE) {
-	            previousRequest.abort(); // Si on a toujours une requête en cours, on l'arrête
+	            previousRequest.abort();
         	}
 
-	        previousRequest = getResults(previousValue); // On stocke la nouvelle requête
+	        previousRequest = getResults(previousValue); 
     	}
 
 	});
@@ -113,14 +111,17 @@ $(document).ready(function(){
 
 		if (res){
 			let d;
+			let ingredient;
 
 			if (div){
 				d = document.getElementById('souhaite');
-				d.innerHTML += "<div class='ingr +ingr'>" + ingre + "</div>";
+				ingredient = "<div class='ingr +ingr'>" + ingre + "</div>";
 			} else {
 				d = document.getElementById('nesouhaitepas');
-				d.innerHTML += "<div class='ingr -ingr'>" + ingre + "</div>";
+				ingredient = "<div class='ingr -ingr'>" + ingre + "</div>";
 			}
+
+			d.innerHTML += ingredient;
 
 		} else {
 			document.getElementById('erreur').innerHTML = "Cet ingrédient est déjà présent dans la recherche";

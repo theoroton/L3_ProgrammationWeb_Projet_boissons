@@ -26,7 +26,7 @@ class  VueAccueil
             <div class="bienvenue">
                 <h2>Bienvenue sur Cocktails, la meilleure application pour créer des cocktails raffraichissants!</h2>
                 <h3>Cliquez sur <strong>Ingrédients</strong> dans la barre de navigation pour commencer l'aventure.</h3>
-                <img class="acceuil " src="img/acceuil.jpg" alt="Photo de cocktails" />
+                <img class="acceuil " src="img/accueil.jpg" alt="Photo de cocktails" />
             </div>
         </body>
 END;

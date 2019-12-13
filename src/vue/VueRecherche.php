@@ -51,6 +51,7 @@ END;
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
+          <link rel="stylesheet" href="css/vueRecherche.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/recherche.js'></script>
           <link rel="stylesheet" href="css/VueRecherche.css">

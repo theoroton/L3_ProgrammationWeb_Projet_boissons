@@ -1,35 +1,53 @@
+* {
+    font-family: "Dosis", sans-serif;
+}
+
+@font-face {
+    font-family: "Dosis";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/dosis-v12-latin-regular.eot");
+    /* IE9 Compat Modes */
+    src: local(""), url("../fonts/dosis-v12-latin-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/dosis-v12-latin-regular.woff2") format("woff2"), /* Super Modern Browsers */
+    url("../fonts/dosis-v12-latin-regular.woff") format("woff"), /* Modern Browsers */
+    url("../fonts/dosis-v12-latin-regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../fonts/dosis-v12-latin-regular.svg#Dosis") format("svg");
+    /* Legacy iOS */
+}
+
 .column {
-  display: inline-block;
-  width : 35%;
-  display : inline-block;
-  vertical-align: top;
-  font-size: 18px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    display: inline-block;
+    width: 35%;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .resultat {
-  width:80%;
-  min-height: 50px;
-  margin: 8px;
-  border-style: solid;
-  border-radius: 5px;
-  transition: 0.3s;
+    width: 80%;
+    min-height: 50px;
+    margin: 8px;
+    border-style: solid;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
 .resultat:hover {
-  background-color: #D3D3D3;
-  cursor: pointer;
+    background-color: #D3D3D3;
+    cursor: pointer;
 }
 
 .contient {
-  font-style: italic;
+    font-style: italic;
 }
 
 #aucunResultats {
-  width:80%;
-  height: 80px;
-  margin: 8px;
-  border-style: solid;
-  border-radius: 5px;
+    width: 80%;
+    height: 80px;
+    margin: 8px;
+    border-style: solid;
+    border-radius: 5px;
 }

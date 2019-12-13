@@ -104,15 +104,14 @@ END;
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
+          <link rel="stylesheet" href="css/vueRecettes.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/fav.js'></script>
           <title>$this->titre</title>
         </head>
         $header
         <body>
-
           $content
-
         </body>
       </html>
 END;

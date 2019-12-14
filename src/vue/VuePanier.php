@@ -17,19 +17,20 @@ class VuePanier {
       $vue = new VueHeader();
       $header = $vue->render();
 
-      $content = "<strong><h2>Panier</h2></strong><br><br><center>";
+      $content = "<h2>Mes recettes préférées</h2><br><br><center>";
 
       if (sizeof($this->recettesFavs) > 0){
         foreach ($this->recettesFavs as $value) {
           $id = $value->getCle();
           $titre = $value->getTitre();
           $content .= <<<END
-          <div class="recette" id='$id' onclick="document.location.href='recette?id=$id'">
-
-            <strong>Titre :</strong> $titre<br>
-
+          <div class='recette'>
+            <div class='lienR' id='$id' onclick="document.location.href='recette?id=$id'">
+              <strong>Titre :</strong> $titre<br>
+            </div>
+            <img class=delFavPanier src=img/croix.png width=40 height=40 value='$id'>
           </div>
-          <img class=delFavPanier src=img/broken_heart.png width=50 height = 50 value='$id'>
+
 END;
         }
       } else {

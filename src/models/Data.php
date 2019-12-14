@@ -2,7 +2,6 @@
 
 namespace cocktails\models;
 
-
 abstract class Data
 {
 
@@ -15,13 +14,13 @@ abstract class Data
 
   public static function getRecettes()
   {
-    require('src/data/Donnees.inc.php');
+    require('data/Donnees.inc.php');
     return $Recettes;
   }
 
   public static function getIngredients()
   {
-    require('src/data/Donnees.inc.php');
+    require('data/Donnees.inc.php');
     return $Hierarchie;
   }
 

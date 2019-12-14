@@ -294,36 +294,34 @@ END;
   }
 
   public function render($type){
+    $vue = new VueHeader();
+    $header = $vue->render();
+
     switch ($type) {
       case 1 : {
         $content = $this->afficherConnexion();
         $title = "Connexion";
-        $header = "";
         break;
       }
       case 2 : {
         $content = $this->afficherInscription();
         $title = "Inscription";
-        $header = "";
         break;
       }
       case 3 : {
         $content = $this->afficherProfil();
         $title = "Profil";
-        $vue = new VueHeader();
-        $header = $vue->render();
+
         break;
       }
       case 4 : {
         $content = $this->afficherModification();
         $title = "Modifier le profil";
-        $header = "";
         break;
       }
       case 5 : {
         $content = $this->afficherModifMdp();
         $title = "Modifier le mot de passe";
-        $header = "";
         break;
       }
     }

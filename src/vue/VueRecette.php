@@ -88,12 +88,12 @@ END;
 
       if ($this->favori){
         $content .= <<<END
-        <img id=delFav src=img/broken_heart.png width=50 height = 50>
+        <img id=delFav class=fav src=img/broken_heart.png width=30 height = 30>
 END;
 
       } else {
         $content .= <<<END
-        <img id=addFav src=img/heart.png width=50 height = 50>
+        <img id=addFav class=fav src=img/heart.png width=30 height = 30>
 END;
       }
 
@@ -104,7 +104,7 @@ END;
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
-          <link rel="stylesheet" href="css/vueRecettes.css">
+          <link rel="stylesheet" href="css/VueRecette.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/fav.js'></script>
           <title>$this->titre</title>

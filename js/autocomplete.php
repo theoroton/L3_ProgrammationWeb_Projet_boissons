@@ -1,7 +1,8 @@
 <?php
+require_once('../data/Donnees.inc.php');
 
 function autocomplete(){
-  require_once('../src/data/Donnees.inc.php');
+  global $Hierarchie;
 
 	$data = array_keys($Hierarchie); // Récupération de la liste complète des villes
 	$dataLen = count($data);
@@ -24,8 +25,8 @@ function autocomplete(){
 }
 
 function existe(){
-  require_once('../src/data/Donnees.inc.php');
-
+  global $Hierarchie;
+  
   if (array_key_exists($_GET['key'],$Hierarchie)){
     echo 'true';
   } else {

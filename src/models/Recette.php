@@ -10,7 +10,7 @@ class Recette extends Data
   private $preparation;
   private $ingredients_requis;
 
-  public function __construct($cle) 
+  public function __construct($cle)
   {
     parent::__construct($cle);
     $recette = $this->getRecettes()[$cle];
@@ -42,7 +42,7 @@ class Recette extends Data
 
   public function getImage()
   {
-    $path = "Photos/";
+    $path = "data/Photos/";
 
     $table = array(
       'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E',

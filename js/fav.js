@@ -12,7 +12,7 @@ $(document).ready(function(){
       success:function(data){
         $("#imgFav").empty();
         $("#imgFav").html(
-          "<img id=delFav src=img/broken_heart.png width=50 height = 50>"
+          "<img id=delFav class=fav src=img/broken_heart.png width=30 height=30>"
         );
       }
     });
@@ -33,7 +33,7 @@ $(document).ready(function(){
       success:function(data){
         $("#imgFav").empty();
         $("#imgFav").html(
-          "<img id=addFav src=img/heart.png width=50 height = 50>"
+          "<img id=addFav class=fav src=img/heart.png width=30 height=30>"
         );
       }
     });

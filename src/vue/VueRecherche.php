@@ -54,7 +54,6 @@ END;
           <link rel="stylesheet" href="css/vueRecherche.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/recherche.js'></script>
-          <link rel="stylesheet" href="css/VueRecherche.css">
           <title>Recherche</title>
         </head>
         $header

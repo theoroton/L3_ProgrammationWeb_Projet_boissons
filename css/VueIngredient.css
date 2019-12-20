@@ -1,0 +1,242 @@
+body {
+    display: flex;
+    flex-direction: column;
+    /* background-color: #e6e6fa; */
+    color: rgb(83, 2, 129);
+    background-size: 100% auto;
+    align-items: center;
+    /* overflow: auto; */
+    /* border: 1px solid #000000; */
+    height: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    /* Depassement vertical*/
+}
+
+html {
+    height: 100%;
+    /* overflow: auto; */
+    /* border: 10px solid red; */
+}
+
+.body-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    /* border: 1px solid #000000; */
+    width: 80%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    /* overflow: auto; */
+}
+
+.ing-show {
+    padding: 5px;
+    /* border: 1px solid #000000; */
+    display: flexbox;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #dbc9cc;
+    margin-top: 15px;
+    color: #000;
+    font-size: 1.3em;
+    flex-wrap: wrap;
+    width: 20%;
+    /* height: ; */
+    /* box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7); */
+    word-wrap: break-word;
+    /* overflow: auto; */
+}
+
+.recette {
+    display: inline-block;
+    width: 30%;
+    height: 85%;
+    margin: auto;
+    /* background-color: #ffe5ea; */
+    /* border: 1px solid #b2a0a3; */
+    /* margin-top: 40px; */
+    padding: 20px;
+    word-wrap: break-word;
+    /* Depassement horizontal*/
+    text-align: center;
+    font-size: 1.3em;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    color: #000;
+}
+
+Cocktails body:nth-child(1) {
+    align-self: flex-start;
+    flex: 0;
+}
+
+#logo {
+    height: 95px;
+    width: 115px;
+    margin: auto;
+}
+
+article {
+    display: block;
+    width: 150px;
+    min-height: 200px;
+    margin: auto;
+    /*Depassement vertical*/
+    /* word-wrap: break-word; */
+    /* Depassement horizontal*/
+    justify-content: center;
+    color: #000;
+    text-align: center;
+    border: 1px solid red;
+}
+
+article h1 {
+    font-size: 1.6em;
+    text-align: left;
+    opacity: 1;
+    color: #8b008b;
+}
+
+article a {
+    color: #8b008b;
+}
+
+.regles {
+    font-size: larger;
+}
+
+p {
+    width: 1000px;
+    /* On a indiqué une largeur (obligatoire) */
+    margin: auto;
+    /* On peut donc demander à ce que le bloc soit centré avec auto */
+    text-align: justify;
+    padding: 12px;
+    margin-bottom: 20px;
+    overflow: auto;
+    /* Depassement vertical*/
+    word-wrap: break-word;
+    /* Depassement horizontal*/
+}
+
+h1 {
+    font-size: 4em;
+    text-align: center;
+    font-style: normal;
+    padding-bottom: 10px;
+    color: #4b0082;
+    /*border: 3px white dashed;*/
+}
+
+h2 {
+    font-size: 1.4em;
+    text-decoration: underline;
+    padding-bottom: 0.5em;
+    display: block;
+    text-align: center;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+mark {
+    background-color: rgb(6, 6, 136);
+    color: #8b008b;
+}
+
+a {
+    color: #997379;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: rgb(95, 8, 73);
+}
+
+
+/*pointeur de la souris sur objet.*/
+
+
+/* a:active{
+/* color: red;
+}*/
+
+
+/*Au mmt du clic
+a:focus{
+	background-attachment: #FFF;
+}
+/*Quand le visiteur selectionne le lien
+a:visited{
+	color: #FF0001;
+}*/
+
+.souligne {
+    text-decoration: underline;
+}
+
+.bienvenue {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2%;
+}
+
+* {
+    font-family: "Dosis", sans-serif;
+}
+
+*:focus {
+    background-color: #2e0438;
+}
+
+@font-face {
+    font-family: "Dosis";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/dosis-v12-latin-regular.eot");
+    /* IE9 Compat Modes */
+    src: local(""), url("../fonts/dosis-v12-latin-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("../fonts/dosis-v12-latin-regular.woff2") format("woff2"), /* Super Modern Browsers */
+    url("../fonts/dosis-v12-latin-regular.woff") format("woff"), /* Modern Browsers */
+    url("../fonts/dosis-v12-latin-regular.ttf") format("truetype"), /* Safari, Android, iOS */
+    url("../fonts/dosis-v12-latin-regular.svg#Dosis") format("svg");
+    /* Legacy iOS */
+}
+
+.acceuil {
+    width: 800px;
+    height: 400px;
+    display: inline-block;
+    align-self: center;
+    padding: 50px;
+}
+
+.dessous {
+    clear: both;
+}
+
+aside {
+    width: 50%;
+    min-width: 400px;
+}
+
+
+/* in the html file, <span class="class name">text</span>
+Selecteurs avancés :
+*{} -> toutes les balises
+
+A B {} -> Pour les B contenues dans A
+A+B {} : B située après A
+a[attribut]{}
+a[attribut="valeur"]{}
+font-size: 16px;
+p{font-size: 14px;}
+h1{font-size: 40px;}*/

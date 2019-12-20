@@ -60,8 +60,6 @@ END;
       <h2>Ingrédient</h2>
       <strong>Nom :</strong> $this->nom
       <br><br>
-      <strong>Chemin :</strong>
-      <br><br>
     </article>
 END;
     $content .= <<<END
@@ -82,7 +80,7 @@ END;
     } else {
       foreach ($this->fils as $value) {
         $content .= <<<END
-      <a href="ingredient?name=$value">$value</a>
+      <a href="ingredient?name=$value">$value</a><br>
 END;
       }
     }
@@ -104,16 +102,16 @@ END;
         $titre = $value['titre'];
         $content .= <<<END
       <a href="recette?id=$id">$titre</a><br>
-    </div>
+
 END;
       }
     }
+    $content .= "</div>";
 
     $html = <<<END
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
-          <title>Cocktails</title>
           <link rel="stylesheet" type="text/css" href="css/VueIngredient.css">
           <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">

@@ -81,13 +81,17 @@ class ControleurUtilisateur {
       }
     }
 
+    if (strlen($_POST['email']) > 0){
+      if (!preg_match('/^([a-z]|[A-Z]|[\.])*@([a-z]|[A-Z]|[\.])*$/',$_POST['email'])){
+        $valide = false;
+        $incorrectes .= "L'email doit contenir un seul @ et ne pas contenir de caractères spéciaux<br>";
+      }
+    }
+
     if (strlen($_POST['tel']) > 0){
-      if (strlen($_POST['tel']) != 10){
+      if (!preg_match('/^[0-9]{10}$/',$_POST['tel'])){
         $valide = false;
-        $incorrectes .= "Le numéro de téléphone doit faire 10 caractères<br>";
-      } else if (!is_numeric($_POST['tel'])){
-        $valide = false;
-        $incorrectes .= "Le numéro de téléphone doit être constituer uniquement de chiffres";
+        $incorrectes .= "Le numéro de téléphone doit faire 10 caractères et être constitué de chiffres<br>";
       }
     }
 
@@ -102,6 +106,7 @@ class ControleurUtilisateur {
         setcookie("CookieCocktails", serialize($cookie));
 
         $redirection = <<<END
+        <title>Connexion réussie</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Connexion réussie.</p>
                </br>
@@ -114,6 +119,7 @@ END;
 
       } else {
         $redirection = <<<END
+        <title>Erreur de connexion</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Mot de passe incorrect.</p>
                </br>
@@ -127,6 +133,7 @@ END;
       }
     } else {
       $redirection = <<<END
+      <title>Erreur de connexion</title>
       <center>
              <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Login inexistant.</p>
              </br>
@@ -221,6 +228,7 @@ END;
         $this->operationUtilisateur(true);
 
         $redirection = <<<END
+        <title>Inscription réussie</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Inscription réussie.</p>
                </br>
@@ -232,6 +240,7 @@ END;
         header("Refresh:3; url=connexion");
       } else {
         $redirection = <<<END
+        <title>Erreur d'inscription</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:100px'>Informations incorrectes :</p>
                <p style='font-family: Georgia, Times, serif;font-size:15px'>$incorrectes</p>
@@ -245,6 +254,7 @@ END;
       }
     } else {
       $redirection = <<<END
+      <title>Erreur d'inscription</title>
       <center>
              <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Login déjà utilisé.</p>
              </br>
@@ -273,6 +283,7 @@ END;
         $this->operationUtilisateur(false);
 
         $redirection = <<<END
+        <title>Modification réussie</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Modification réussie.</p>
                </br>
@@ -285,6 +296,7 @@ END;
 
       } else {
         $redirection = <<<END
+        <title>Erreur de modification</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:100px'>Informations incorrectes :</p>
                <p style='font-family: Georgia, Times, serif;font-size:15px'>$incorrectes</p>
@@ -299,6 +311,7 @@ END;
       }
     } else {
       $redirection = <<<END
+      <title>Erreur de modification</title>
       <center>
              <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Login déjà utilisé.</p>
              </br>
@@ -322,6 +335,7 @@ END;
         $utilisateur->save();
 
         $redirection = <<<END
+        <title>Modification réussie</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Modification réussie.</p>
                </br>
@@ -334,6 +348,7 @@ END;
 
       } else {
         $redirection = <<<END
+        <title>Erreur de modification</title>
         <center>
                <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Les mots de passes ne correspondent pas.</p>
                </br>
@@ -347,6 +362,7 @@ END;
       }
     } else {
       $redirection = <<<END
+      <title>Erreur de modification</title>
       <center>
              <p style='font-family: Georgia, Times, serif;font-size:30px;margin-top:250px'>Ancien mot de passe incorrect.</p>
              </br>

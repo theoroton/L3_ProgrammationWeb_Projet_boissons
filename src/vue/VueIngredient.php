@@ -32,7 +32,7 @@ class VueIngredient
     ///////////////////////////////////////////////////////////////////////
 
     $content .= <<<END
-      <div class="ing-show">
+      <div id='ing-show'>
       <article>
             <h2>Parents</h2>
 END;
@@ -89,7 +89,7 @@ END;
     </div>
 END;
     $content .= <<<END
-<div class="recette">
+<div id='recette'>
   <h2>Recettes :</h2> <br>
 
 END;
@@ -113,13 +113,13 @@ END;
         <head>
           <meta charset="utf-8">
           <link rel="stylesheet" type="text/css" href="css/VueIngredient.css">
-          <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <title>$this->nom</title>
         </head>
         $header
         <body>
-          <div class = "body-container">
+          <div id="body-container">
           $content
           </div>
         </body>

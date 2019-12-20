@@ -24,7 +24,7 @@ END;
         <header>
 
         <h1>Cocktails</h1>
-        <div class="contenant-nav">
+        <div id='contenant-nav'>
             <nav>
                     <a href="accueil">Accueil</a>
                     <a href="ingredient?name=Aliment">Ingrédients</a>

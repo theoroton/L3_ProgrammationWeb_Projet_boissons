@@ -15,24 +15,24 @@ class VueUtilisateur {
   private function afficherConnexion(){
     $content = <<<END
     <form id="connexion" method="post" action="connexion">
-            <p>
-              <label> Login
-                  <input type="text" name="login" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Login </label>
+              <input type="text" name="login" required>
+            </div>
 
-            <p>
-              <label> Mot de passe
-                  <input type="password" name="mdp" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Mot de passe </label>
+              <input type="password" name="mdp" required>
+            </div>
 
-            <p>
+            <div class='form-button'>
               <button id="bvalide" type="submit">Se connecter</button>
-            </p>
+            </div>
     </form>
 
-    <a href="inscription">Pas de compte ? S'inscrire</a><br>
+    <div class='form-button'>
+      <a href="inscription">Pas de compte ? S'inscrire</a><br>
+    </div>
 END;
 
     return $content;
@@ -41,83 +41,74 @@ END;
   private function afficherInscription(){
     $content = <<<END
     <form id="inscription" method="post" action="inscription">
-            <p>
-              <label> Login <span style="color:red">*</span>
-                  <input type="text" name="login" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Login <span style="color:red">*</span> </label>
+              <input type="text" name="login" required>
+            </div>
 
-            <p>
-              <label> Mot de passe <span style="color:red">*</span>
-                  <input type="password" name="mdp1" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Mot de passe <span style="color:red">*</span> </label>
+              <input type="password" name="mdp1" required>
+            </div>
 
-            <p>
-              <label> Confirmer le mot de passe <span style="color:red">*</span>
-                  <input type="password" name="mdp2" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Confirmer le mot de passe <span style="color:red">*</span> </label>
+              <input type="password" name="mdp2" required>
+            </div>
 
-            <p>
-              <label> Nom
-                  <input type="text" name="nom">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Nom </label>
+              <input type="text" name="nom">
+            </div>
 
-            <p>
-              <label> Prénom
-                  <input type="text" name="prenom">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Prénom </label>
+              <input type="text" name="prenom">
+            </div>
 
-            <span>
-             <label>Sexe</label>
+            <div class='form-group'>
+             <label> Sexe </label>
              <input type="radio" name="sexe" value="F"> Femme
              <input type="radio" name="sexe" value="H"> Homme
-            </span>
+            </div>
 
-            <p>
-              <label> Email
-                  <input type="text" name="email">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Email </label>
+              <input type="text" name="email">
+            </div>
 
-            <p>
-              <label> Date de naissance
-                  <input type="date" name="date_naissance">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Date de naissance </label>
+              <input type="date" name="date_naissance">
+            </div>
 
-            <p>
-              <label> Adresse
-                  <input type="text" name="adresse">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Adresse </label>
+              <input type="text" name="adresse">
+            </div>
 
-            <p>
-              <label> Code postal
-                  <input type="text" name="code_postal">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Code postal </label>
+              <input type="text" name="code_postal">
+            </div>
 
-            <p>
-              <label> Ville
-                  <input type="text" name="ville">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Ville </label>
+              <input type="text" name="ville">
+            </div>
 
-            <p>
-              <label> Numéro de téléphone
-                  <input type="text" name="tel">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Numéro de téléphone </label>
+              <input type="text" name="tel">
+            </div>
 
-            <p><span style="color:red">* Informations obligatoires</span></p>
+            <div class='infos'>
+              <span>* Informations obligatoires</span>
+            </div>
 
-            <p>
+            <div class='form-button'>
               <button id="bvalide" type="submit">S'inscrire</button>
-            </p>
+            </div>
     </form>
 END;
 
@@ -148,70 +139,60 @@ END;
 
     $content = <<<END
     <form id="modification" method="post" action="modifierProfil">
-            <p>
-              <label> Login
-                  <input type="text" name="login" value="$login" required>
-                  <span style="color:red"> * requis</span>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Login <span style="color:red"> * requis</span> </label>
+              <input type="text" name="login" value="$login" required>
+            </div>
 
-            <p>
-              <label> Nom
-                  <input type="text" name="nom" value="$nom">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Nom </label>
+              <input type="text" name="nom" value="$nom">
+            </div>
 
-            <p>
-              <label> Prénom
-                  <input type="text" name="prenom" value="$prenom">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Prénom </label>
+              <input type="text" name="prenom" value="$prenom">
+            </div>
 
-            <span>
+            <div class='form-group'>
              <label>Sexe</label>
              <input type="radio" name="sexe" value="F" $sexeF> Femme
              <input type="radio" name="sexe" value="H" $sexeH> Homme
-            </span>
+            </div>
 
-            <p>
-              <label> Email
-                  <input type="text" name="email" value="$email">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Email </label>
+              <input type="text" name="email" value="$email">
+            </div>
 
-            <p>
-              <label> Date de naissance
-                  <input type="date" name="date_naissance" value=$dateNaiss>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Date de naissance </label>
+              <input type="date" name="date_naissance" value=$dateNaiss>
+            </div>
 
-            <p>
-              <label> Adresse
-                  <input type="text" name="adresse" value="$adresse">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Adresse </label>
+              <input type="text" name="adresse" value="$adresse">
+            </div>
 
-            <p>
-              <label> Code postal
-                  <input type="text" name="code_postal" value="$codePostal">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Code postal </label>
+              <input type="text" name="code_postal" value="$codePostal">
+            </div>
 
-            <p>
-              <label> Ville
-                  <input type="text" name="ville" value="$ville">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Ville </label>
+              <input type="text" name="ville" value="$ville">
+            </div>
 
-            <p>
-              <label> Numéro de téléphone
-                  <input type="text" name="tel" value="$tel">
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Numéro de téléphone </label>
+              <input type="text" name="tel" value="$tel">
+            </div>
 
-            <p>
+            <div class='form-button'>
               <button id="bvalide" type="submit">Modifier</button>
-            </p>
+            </div>
     </form>
 END;
 
@@ -221,29 +202,28 @@ END;
   private function afficherModifMdp(){
     $content = <<<END
     <form id="modificationMdp" method="post" action="modifierMdp">
-            <p>
-              <label> Ancien mot de passe <span style="color:red">*</span>
-                  <input type="password" name="amdp" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Ancien mot de passe <span style="color:red">*</span>  </label>
+              <input type="password" name="amdp" required>
+            </div>
 
-            <p>
-              <label> Nouveau mot de passe <span style="color:red">*</span>
-                  <input type="password" name="mdp1" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Nouveau mot de passe <span style="color:red">*</span>   </label>
+              <input type="password" name="mdp1" required>
+            </div>
 
-            <p>
-              <label> Confirmer le nouveau mot de passe <span style="color:red">*</span>
-                  <input type="password" name="mdp2" required>
-              </label>
-            </p>
+            <div class='form-group'>
+              <label> Confirmer le nouveau mot de passe <span style="color:red">*</span>   </label>
+              <input type="password" name="mdp2" required>
+            </div>
 
-            <p><span style="color:red">* Informations obligatoires</span></p>
+            <div class='infos'>
+              <span>* Informations obligatoires</span>
+            </div>
 
-            <p>
+            <div class='form-button'>
               <button id="bvalide" type="submit">Modifier</button>
-            </p>
+            </div>
     </form>
 END;
 
@@ -280,13 +260,17 @@ END;
         <p><strong>Téléphone : </strong>$tel</p>
 
         <form action="modifierProfil" method="get">
-          <input id="bmodifierInfos" type="submit" value="Modifier le profil">
+          <div class='form-button'>
+            <input id="bmodifierInfos" type="submit" value="Modifier le profil">
+          </div>
         </form>
 
         <br>
 
         <form action="modifierMdp" method="get">
-          <input id="bmodifierMdp" type="submit" value="Modifier le mot de passe">
+          <div class='form-button'>
+            <input id="bmodifierMdp" type="submit" value="Modifier le mot de passe">
+          </div>
         </form>
 END;
 
@@ -331,13 +315,18 @@ END;
       <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/VueUtilisateur.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
         <title>$title</title>
       </head>
       $header
       <body>
 
-      $content
+      <h2>$title</h2><br>
+
+      <div id='divUt'>
+        $content
+      </div>
 
       </body>
     </html>

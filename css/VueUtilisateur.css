@@ -1,55 +1,36 @@
-    * {
-        font-family: "Dosis", sans-serif;
-    }
-    
-    @font-face {
-        font-family: "Dosis";
-        font-style: normal;
-        font-weight: 400;
-        src: url("../fonts/dosis-v12-latin-regular.eot");
-        /* IE9 Compat Modes */
-        src: local(""), url("../fonts/dosis-v12-latin-regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-        url("../fonts/dosis-v12-latin-regular.woff2") format("woff2"), /* Super Modern Browsers */
-        url("../fonts/dosis-v12-latin-regular.woff") format("woff"), /* Modern Browsers */
-        url("../fonts/dosis-v12-latin-regular.ttf") format("truetype"), /* Safari, Android, iOS */
-        url("../fonts/dosis-v12-latin-regular.svg#Dosis") format("svg");
-        /* Legacy iOS */
-    }
-    
-    body {
-        display: flex;
-        flex-direction: column;
-        background-color: #e6e6fa;
-        color: rgb(83, 2, 129);
-        background-size: 100% auto;
-        align-items: center;
-        height: 100%;
-        margin: 5em;
-        /* border: 1px solid #000000; */
-    }
-    
-    html {
-        height: 100%;
-        /* overflow: auto; */
-        /* border: 10px solid red; */
-    }
-    
-    .body-container {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        align-items: center;
-        /* border: 1px solid #000000; */
-        justify-content: space-between;
-        width: 80%;
-        height: 100%;
-        margin: 0px;
-        padding: 0px;
-        /* overflow: auto; */
-    }
-    
-    #connexion {
-        /* margin: auto; */
-        font-size: 1.7em;
-        /* border: 1px solid #000000; */
-    }
+h2 {
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.infos {
+  text-align: center;
+  color: red;
+}
+
+.form-group {
+  margin-left: 15%;
+}
+
+.form-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#divUt {
+  width: 60%;
+  margin-left: 20%;
+  margin-bottom: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 32%;
+  text-align: right;
+}
+
+p {
+  margin-left: 25%;
+}

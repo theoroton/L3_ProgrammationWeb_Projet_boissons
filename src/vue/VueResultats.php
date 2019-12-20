@@ -16,7 +16,7 @@ class VueResultats {
     $vue = new VueHeader();
     $header = $vue->render();
 
-    $content = "<strong><h2>Résultats</h2></strong><br><br><center>";
+    $content = "<strong><h2>Résultats</h2></strong><br><center>";
 
     if (sizeof($this->resultats) > 0){
       foreach ($this->resultats as $value) {
@@ -63,6 +63,8 @@ END;
       <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/VueResultats.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <title>Résultats</title>
       </head>

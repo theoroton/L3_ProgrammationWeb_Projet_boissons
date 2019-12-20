@@ -51,14 +51,18 @@ END;
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
-          <link rel="stylesheet" href="css/vueRecherche.css">
+          <link rel="stylesheet" href="css/VueRecherche.css">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/recherche.js'></script>
           <title>Recherche</title>
         </head>
         $header
         <body>
-        <br>
+
+        <h2>Recherche</h2><br>
+
         $content
 
         </body>

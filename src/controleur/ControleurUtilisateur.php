@@ -82,7 +82,7 @@ class ControleurUtilisateur {
     }
 
     if (strlen($_POST['email']) > 0){
-      if (!preg_match('/^([a-z]|[A-Z]|[\.])*@([a-z]|[A-Z]|[\.])*$/',$_POST['email'])){
+      if (!preg_match('/^([a-z]|[A-Z]|[0-9]|[\.])*@([a-z]|[A-Z]|[0-9]|[\.])*$/',$_POST['email'])){
         $valide = false;
         $incorrectes .= "L'email doit contenir un seul @ et ne pas contenir de caractères spéciaux<br>";
       }
@@ -91,7 +91,7 @@ class ControleurUtilisateur {
     if (strlen($_POST['tel']) > 0){
       if (!preg_match('/^[0-9]{10}$/',$_POST['tel'])){
         $valide = false;
-        $incorrectes .= "Le numéro de téléphone doit faire 10 caractères et être constitué de chiffres<br>";
+        $incorrectes .= "Le numéro de téléphone doit faire 10 caractères et être constitué uniquement de chiffres<br>";
       }
     }
 
@@ -250,7 +250,7 @@ END;
 END;
 
         echo $redirection;
-        header("Refresh:3; url=inscription");
+        header("Refresh:6; url=inscription");
       }
     } else {
       $redirection = <<<END
@@ -306,7 +306,7 @@ END;
 END;
 
         echo $redirection;
-        header("Refresh:3; url=modifierProfil");
+        header("Refresh:6; url=modifierProfil");
 
       }
     } else {

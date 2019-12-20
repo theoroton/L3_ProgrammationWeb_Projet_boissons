@@ -47,7 +47,7 @@ html {
 #recette {
     display: inline-block;
     width: 30%;
-    height: 85%;
+    min-height: 500px;
     margin: auto;
     padding: 20px;
     word-wrap: break-word;

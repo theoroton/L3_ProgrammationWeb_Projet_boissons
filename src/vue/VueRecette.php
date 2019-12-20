@@ -30,9 +30,14 @@ class VueRecette  {
 
       $content = <<<END
         <input type="hidden" id="id" value=$this->id>
-        <strong>Titre :</strong> $this->titre<br><br>
-        <strong>Quantités :</strong><br>
-        <ul>
+
+        <div id='prep'>
+          <strong>Préparation :</strong> $this->preparation<br><br>
+        </div>
+
+        <div id='ligne'>
+          <div class='colonne'>
+            <strong>Quantités :</strong><br><br>
 END;
 
 ///////////////////////////////////////////////////////////////////////
@@ -44,15 +49,16 @@ END;
       } else {
         foreach ($this->ingrs as $value) {
           $content .= <<<END
-          <li>$value</li><br>
+          <div class='ingr'>$value</div>
 END;
         }
       }
 
       $content .= <<<END
-        </ul>
-        <strong>Préparation :</strong> $this->preparation<br><br>
-        <strong>Ingrédients requis :</strong><br><br>
+        </div>
+
+        <div class='colonne'>
+          <strong>Ingrédients requis :</strong><br><br>
 END;
 
 ///////////////////////////////////////////////////////////////////////
@@ -69,14 +75,18 @@ END;
         }
       }
 
+      $content .= "</div>";
+
 ///////////////////////////////////////////////////////////////////////
 //Image
 ///////////////////////////////////////////////////////////////////////
 
       if (file_exists($this->image)){
         $content .= <<<END
-          <br><strong>Image</strong><br><br>
+          <div id='image' class='colonne'>
+            <strong>Image :</strong><br>
           <img src=$this->image width=100 height=150>
+          </div>
 END;
       }
 
@@ -84,7 +94,7 @@ END;
 //Favori
 ///////////////////////////////////////////////////////////////////////
 
-      $content .= "<br><span id='imgFav'><br>";
+      $content .= "</div><div id='fav'>";
 
       if ($this->favori){
         $content .= <<<END
@@ -97,7 +107,7 @@ END;
 END;
       }
 
-      $content .= "</span>";
+      $content .= "</div>";
 
 
       $html = <<<END
@@ -113,7 +123,10 @@ END;
         </head>
         $header
         <body>
-          $content
+          <h2>$this->titre</h2><br>
+          <div id='recette'>
+            $content
+          </div>
         </body>
       </html>
 END;

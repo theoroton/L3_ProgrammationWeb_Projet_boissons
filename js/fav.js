@@ -10,8 +10,8 @@ $(document).ready(function(){
         "callAddFav": id
       },
       success:function(data){
-        $("#imgFav").empty();
-        $("#imgFav").html(
+        $("#fav").empty();
+        $("#fav").html(
           "<img id=delFav class=fav src=img/broken_heart.png width=30 height=30>"
         );
       }
@@ -31,8 +31,8 @@ $(document).ready(function(){
         "callDelFav": id
       },
       success:function(data){
-        $("#imgFav").empty();
-        $("#imgFav").html(
+        $("#fav").empty();
+        $("#fav").html(
           "<img id=addFav class=fav src=img/heart.png width=30 height=30>"
         );
       }

@@ -6,7 +6,6 @@ h2 {
 }
 
 .column {
-    display: inline-block;
     width: 35%;
     display: inline-block;
     vertical-align: top;

@@ -1,32 +1,45 @@
 <?php
 require_once('../data/Donnees.inc.php');
 
+/*
+Méthode qui permet de compléter automatiquement un ingrédient
+*/
 function autocomplete(){
   global $Hierarchie;
 
-	$data = array_keys($Hierarchie); // Récupération de la liste complète des villes
-	$dataLen = count($data);
+  //On récupère tous les ingrédients
+	$ingredients = array_keys($Hierarchie);
+	$nbIngrs = count($ingredients);
 
-	sort($data); // On trie les villes dans l'ordre alphabétique
+  //On trie les ingrédients par ordre alphabétique
+	sort($ingredients);
 
-	$results = array(); // Le tableau où seront stockés les résultats de la recherche
+	$results = array();
 
-	// La boucle ci-dessous parcourt tout le tableau $data, jusqu'à un maximum de 10 résultats
-
-	for ($i = 0 ; $i < $dataLen && count($results) < 20 ; $i++) {
-	    if (stripos($data[$i], $_GET['nom']) === 0) { // Si la valeur commence par les mêmes caractères que la recherche
-
-	        array_push($results, $data[$i]); // On ajoute alors le résultat à la liste à retourner
-
+	//On parcours les 20 premiers ingrédients
+	for ($i = 0 ; $i < $nbIngrs && count($results) < 20 ; $i++) {
+      /*
+      Si l'ingrédient courant commence par les mêmes caractères que celui recherché,
+      on l'ajoute au tableau des résultats.
+      */
+	    if (stripos($ingredients[$i], $_GET['nom']) === 0) {
+	        array_push($results, $ingredients[$i]);
 	    }
 	}
 
-	echo implode('|', $results); // Et on affiche les résultats séparés par une barre verticale |
+  //On affiche les résultats séparés par '|'
+	echo implode('|', $results);
 }
 
+/*
+Méthode qui permet de savoir si un ingrédient existe.
+*/
 function existe(){
   global $Hierarchie;
 
+  /*
+  Si l'ingrédient existe, on renvoie true. Sinon false.
+  */
   if (array_key_exists($_GET['key'],$Hierarchie)){
     echo 'true';
   } else {
@@ -34,10 +47,20 @@ function existe(){
   }
 }
 
+/*
+Si le paramètre envoyer par Ajax correspond
+à 'nom', alors on exécute la fonction
+qui complète la recherche.
+*/
 if (isset($_GET['nom'])){
   autocomplete();
 }
 
+/*
+Si le paramètre envoyer par Ajax correspond
+à 'key', alors on exécute la fonction
+qui vérifie si un ingrédient existe.
+*/
 if (isset($_GET['key'])){
   existe();
 }

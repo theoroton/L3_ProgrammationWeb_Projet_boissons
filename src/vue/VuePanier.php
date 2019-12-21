@@ -5,6 +5,11 @@ namespace cocktails\vue;
 use \cocktails\models\Recette;
 use \cocktails\vue\VueHeader;
 
+/*
+La vue panier affiche les recettes favorites
+de l'utilisateur.
+*/
+
 //Vue accueil
 class VuePanier {
 

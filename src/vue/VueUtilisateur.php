@@ -4,14 +4,29 @@ namespace cocktails\vue;
 
 use \cocktails\vue\VueHeader;
 
+/*
+La vue utilisateur affiche les formulaires
+liés à l'inscription, la connexion, et les
+modifications
+*/
+
+//Vue utilisateur
 class VueUtilisateur {
 
+  //Utilisateur
   private $utilisateur;
 
+  /*
+  Constructeur de la vue à laquelle on donne
+  l'utilisateur.
+  */
   public function __construct($u){
     $this->utilisateur = $u;
   }
 
+  /*
+  Méthode qui affiche le formulaire de connexion
+  */
   private function afficherConnexion(){
     $content = <<<END
     <form id="connexion" method="post" action="connexion">
@@ -38,6 +53,9 @@ END;
     return $content;
   }
 
+  /*
+  Méthode qui affiche le formulaire d'inscription
+  */
   private function afficherInscription(){
     $content = <<<END
     <form id="inscription" method="post" action="inscription">
@@ -115,6 +133,9 @@ END;
     return $content;
   }
 
+  /*
+  Méthode qui affiche le formulaire de modification du profil
+  */
   private function afficherModification(){
     $login = $this->utilisateur->login;
     $nom = $this->utilisateur->nom;
@@ -199,6 +220,9 @@ END;
     return $content;
   }
 
+  /*
+  Méthode qui affiche le formulaire de modification du mdp
+  */
   private function afficherModifMdp(){
     $content = <<<END
     <form id="modificationMdp" method="post" action="modifierMdp">
@@ -230,6 +254,9 @@ END;
     return $content;
   }
 
+  /*
+  Méthode qui affiche le profil
+  */
   private function afficherProfil(){
     $login = $this->utilisateur->login;
     $nom = $this->utilisateur->nom;
@@ -277,32 +304,41 @@ END;
     return $content;
   }
 
+  /*
+  Méthode render qui affiche le bon formulaire
+  */
   public function render($type){
+    //Ajout du header
     $vue = new VueHeader();
     $header = $vue->render();
 
     switch ($type) {
+      //Afficher la connexion
       case 1 : {
         $content = $this->afficherConnexion();
         $title = "Connexion";
         break;
       }
+      //Afficher l'inscription
       case 2 : {
         $content = $this->afficherInscription();
         $title = "Inscription";
         break;
       }
+      //Afficher le profil
       case 3 : {
         $content = $this->afficherProfil();
         $title = "Profil";
 
         break;
       }
+      //Afficher la modification du profil
       case 4 : {
         $content = $this->afficherModification();
         $title = "Modifier le profil";
         break;
       }
+      //Afficher la modification du mot de passe
       case 5 : {
         $content = $this->afficherModifMdp();
         $title = "Modifier le mot de passe";
@@ -310,6 +346,7 @@ END;
       }
     }
 
+    //Contenu à afficher
     $html = <<<END
     <!DOCTYPE html>
       <head>

@@ -4,6 +4,11 @@ namespace cocktails\vue;
 
 use \cocktails\vue\VueHeader;
 
+/*
+La vue ingrédient affiche un ingrédient et
+toutes ses informations
+*/
+
 //Vue ingrédient
 class VueIngredient
 {
@@ -43,6 +48,7 @@ class VueIngredient
 
     //Affichage du nom de l'ingrédient
     $content .= <<<END
+          <div id='ing-show'>
     <article>
       <h2>Ingrédient</h2>
       <strong>Nom :</strong> $this->nom
@@ -54,9 +60,8 @@ END;
 
     //Affichage des parents
     $content .= <<<END
-      <div id='ing-show'>
-      <article>
-            <h2>Parents</h2>
+    <article>
+        <h2>Parents</h2>
 END;
 
     /*

@@ -4,13 +4,25 @@ namespace cocktails\vue;
 
 use \cocktails\vue\VueHeader;
 
+/*
+La vue accueil affiche l'accueil du site sur lequel
+se trouve des informations sur le site
+*/
+
+//Vue accueil
 class  VueAccueil
 {
 
+    /*
+    Méthode render qui affiche l'accueil
+    */
     public function render()
     {
+        //Ajout du header
         $vue = new VueHeader();
         $header = $vue->render();
+
+        //Contenu à afficher
         $html = <<<END
         <!DOCTYPE html>
         <head>

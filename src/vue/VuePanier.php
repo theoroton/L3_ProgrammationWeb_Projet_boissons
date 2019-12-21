@@ -5,20 +5,35 @@ namespace cocktails\vue;
 use \cocktails\models\Recette;
 use \cocktails\vue\VueHeader;
 
+//Vue accueil
 class VuePanier {
 
+  //Recette favorites
   private $recettesFavs;
 
+  /*
+  Constructeur de la vue à laquelle on donne
+  les recettes favorites à afficher.
+  */
   public function __construct($rF){
     $this->recettesFavs = $rF;
   }
 
+  /*
+  Méthode render qui affiche le panier
+  */
   public function render(){
+      //Ajout du header
       $vue = new VueHeader();
       $header = $vue->render();
 
       $content = "<h2>Mes recettes préférées</h2><br><center>";
 
+      /*
+      Si on a des recettes favorites, alors on les affiche.
+      Sinon on affiche que l'utilisateur n'a aucune recettes
+      favorites.
+      */
       if (sizeof($this->recettesFavs) > 0){
         foreach ($this->recettesFavs as $value) {
           $id = $value->getCle();
@@ -46,6 +61,7 @@ END;
 
       $content .= "</center>";
 
+      //Contenu à afficher
       $html = <<<END
       <!DOCTYPE html>
         <head>

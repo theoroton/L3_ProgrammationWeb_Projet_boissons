@@ -6,7 +6,17 @@ use \cocktails\vue\VueUtilisateur;
 use \cocktails\vue\VueAccueil;
 use \cocktails\models\Utilisateur;
 
+//Controleur Utilisateur
 class ControleurUtilisateur {
+
+  /*
+  Méthode qui crée la vue de l'accueil et
+  l'affiche.
+  */
+  public function afficherAccueil(){
+    $vue = new VueAccueil();
+    $vue->render();
+  }
 
   public function afficherConnexion(){
     if (isset($_COOKIE['CookieCocktails'])){
@@ -52,11 +62,6 @@ class ControleurUtilisateur {
   public function afficherModificationMdp(){
     $vue = new VueUtilisateur(NULL);
     $vue->render(5);
-  }
-
-  public function afficherAccueil(){
-    $vue = new VueAccueil();
-    $vue->render();
   }
 
   private function verifMdp(){

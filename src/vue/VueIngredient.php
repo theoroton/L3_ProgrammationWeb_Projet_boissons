@@ -4,14 +4,24 @@ namespace cocktails\vue;
 
 use \cocktails\vue\VueHeader;
 
+//Vue ingrédient
 class VueIngredient
 {
 
+  //Nom de l'ingrédient
   private $nom;
+  //Parents de l'ingrédient
   private $parents;
+  //Fils de l'ingrédient
   private $fils;
+  //Recettes liées à l'ingrédient
   private $recettesLiees;
 
+  /*
+  Constructeur de la vue à laquelle on donne
+  le nom, les parents, les fils et les recettes
+  liées à l'ingrédient.
+  */
   public function __construct($n, $p, $f, $r)
   {
     $this->nom = $n;
@@ -20,23 +30,40 @@ class VueIngredient
     $this->recettesLiees = $r;
   }
 
+  /*
+  Méthode render qui affiche l'ingrédient
+  */
   public function render()
   {
+    //Ajout du header
     $vue = new VueHeader();
     $header = $vue->render();
 
     $content = "";
 
-    ///////////////////////////////////////////////////////////////////////
-    //Parents
-    ///////////////////////////////////////////////////////////////////////
+    //Affichage du nom de l'ingrédient
+    $content .= <<<END
+    <article>
+      <h2>Ingrédient</h2>
+      <strong>Nom :</strong> $this->nom
+      <br><br>
+    </article>
+END;
+    $content .= <<<END
+END;
 
+    //Affichage des parents
     $content .= <<<END
       <div id='ing-show'>
       <article>
             <h2>Parents</h2>
 END;
 
+    /*
+    Si il n'y a pas de parents, alors on affiche qu'il y en a aucun.
+    Sinon, pour chaque parent, on va créer un lien vers ce parent
+    afin de parcourir l'aborescence.
+    */
     if (is_null($this->parents)) {
       $content .= "Aucun parents";
     } else {
@@ -51,30 +78,18 @@ END;
     </article>
 END;
 
-    ///////////////////////////////////////////////////////////////////////
-    //Nom & chemin
-    ///////////////////////////////////////////////////////////////////////
-
-    $content .= <<<END
-    <article>
-      <h2>Ingrédient</h2>
-      <strong>Nom :</strong> $this->nom
-      <br><br>
-    </article>
-END;
-    $content .= <<<END
-END;
-
-    ///////////////////////////////////////////////////////////////////////
-    //Fils
-    ///////////////////////////////////////////////////////////////////////
-
+    //Affichage des fils
     $content .= <<<END
     <article>
       <h2>Fils</h2>
 
 END;
 
+    /*
+    Si il n'y a pas de fils, alors on affiche qu'il y en a aucun.
+    Sinon, pour chaque fils, on va créer un lien vers ce fils
+    afin de parcourir l'aborescence.
+    */
     if (is_null($this->fils)) {
       $content .= "Aucun fils";
     } else {
@@ -88,12 +103,19 @@ END;
     </article>
     </div>
 END;
+
+    //Affichage des recettes liées
     $content .= <<<END
 <div id='recette'>
   <h2>Recettes :</h2> <br>
 
 END;
 
+    /*
+    Si il n'y a pas de recettes liées, alors on affiche qu'il y en a aucune.
+    Sinon, pour chaque recette, on va créer un lien vers cette recette
+    afin de visualiser cette recette.
+    */
     if (sizeof($this->recettesLiees) == 0) {
       $content .= "Cet aliment n'est utilisé dans aucune recette";
     } else {
@@ -108,6 +130,7 @@ END;
     }
     $content .= "</div>";
 
+    //Contenu à afficher
     $html = <<<END
       <!DOCTYPE html>
         <head>

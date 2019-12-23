@@ -1,19 +1,26 @@
 $(document).ready(function(){
 
-	var searchElement = document.getElementById('search');
+	//On récupère l'input de recherche
+	var search = document.getElementById('search');
+	//On récupère la div pour stocker les résultats
 	var results = document.getElementById('results');
+	//On stocke la requete précédente afin de l'annuler quand on ajoute une lettre à l'ingrédient recherché
 	var previousRequest;
-  var previousValue = searchElement.value;
+	//On stocke la valeur précédente
+  var previousValue = search.value;
 
-	function getResults(keywords) { // Effectue une requête et récupère les résultats
+	/*
+	Fonction qui effectue une recherche et récupère les résultat.
+	*/
+	function getResults(mot) {
 
 	    var xhr = new XMLHttpRequest();
-	    xhr.open('GET', 'js/autocomplete.php?nom='+ encodeURIComponent(keywords));
+			//On utilise le fichier autocomplete.php auquel on donne le mot écrit
+	    xhr.open('GET', 'js/autocomplete.php?nom='+ encodeURIComponent(mot));
 
     	xhr.addEventListener('readystatechange', function() {
         	if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
 	            displayResults(xhr.responseText);
-
         	}
 	    });
 
@@ -23,65 +30,82 @@ $(document).ready(function(){
 
 	}
 
-	function displayResults(response) { // Affiche les résultats d'une requête
+	/*
+	Fonction qui affiche les résultats
+	*/
+	function displayResults(rep) {
 
-    	results.style.display = response.length ? 'block' : 'none'; // On cache le conteneur si on n'a pas de résultats
+			/*
+			Si on a des résultats alors on modifie la div contenant les résultats.
+			*/
+	    if (rep.length) {
+				  results.style.display = 'block';
 
-	    if (response.length) { // On ne modifie les résultats que si on en a obtenu
+					//On enlève les précédents résultats.
+	        results.innerHTML = '';
 
-	        response = response.split('|');
-	        var responseLen = response.length;
 
-	        results.innerHTML = ''; // On vide les résultats
-
-	        for (var i = 0, div ; i < responseLen ; i++) {
+					rep = rep.split('|');
+					//On ajoute chacun des ingrédients trouver à la div des résultats.
+	        for (var i = 0, div ; i < rep.length ; i++) {
 
             	div = results.appendChild(document.createElement('div'));
-            	div.innerHTML = response[i];
+            	div.innerHTML = rep[i];
 
+							//Quand on clique sur un élément, on le choisit
             	div.addEventListener('click', function(e) {
                 	chooseResult(e.target);
 	            });
 
 	        }
 
-	    }
+	    } else {
+					results.style.display = 'none';
+			}
 
 	}
 
-	function chooseResult(result) { // Choisi un des résultats d'une requête et gère tout ce qui y est attaché
-
-	    searchElement.value = previousValue = result.innerHTML; // On change le contenu du champ de recherche et on enregistre en tant que précédente valeur
-	    results.style.display = 'none'; // On cache les résultats
-	    result.className = ''; // On supprime l'effet de focus
-	    searchElement.focus(); // Si le résultat a été choisi par le biais d'un clique alors le focus est perdu, donc on le réattribue
-
+	/*
+	Fonction qui est appeler quand on choisit un ingrédient.
+	*/
+	function chooseResult(res) {
+		  //On change la valeur du champ de recherche
+	    search.value = previousValue = res.innerHTML;
+	    results.style.display = 'none';
+	    search.focus();
 	}
 
-	searchElement.addEventListener('keyup', function(e) {
+	//Quand on appuie sur une touche dans le champ de recherche
+	search.addEventListener('keyup', function(e) {
 			document.getElementById('erreur').innerHTML = "";
+			//Si la valeur afficher est nouvelle
+      if (search.value != previousValue) {
+	        previousValue = search.value;
 
-      if (searchElement.value != previousValue) { // Si le contenu du champ de recherche a changé
-
-	        previousValue = searchElement.value;
-
+					//On arrête la recherche précédente
 	        if (previousRequest && previousRequest.readyState < XMLHttpRequest.DONE) {
-	            previousRequest.abort(); // Si on a toujours une requête en cours, on l'arrête
+	            previousRequest.abort();
         	}
 
-	        previousRequest = getResults(previousValue); // On stocke la nouvelle requête
+					//On récupère les résultats de la recherche
+	        previousRequest = getResults(previousValue);
     	}
 
 	});
 
+	//Quand on ajoute un ingrédient à la liste des souhaités, on vérifie si il existe
 	$(document).on('click','#addIngreSouhaiter', function(){
 		check(true);
 	});
 
+	//Quand on ajoute un ingrédient à la liste des non souhaités, on vérifie si il existe
 	$(document).on('click','#addIngrePasSouhaiter', function(){
 		check(false);
 	});
 
+	/*
+	Fonction qui permet de vérifier si un ingrédient existe.
+	*/
 	function check(div){
 		let key = document.getElementById('search').value
 
@@ -89,6 +113,10 @@ $(document).ready(function(){
 		x.open('GET', 'js/autocomplete.php?key='+ encodeURIComponent(key));
 		x.addEventListener('readystatechange', function() {
 				if (x.readyState == XMLHttpRequest.DONE && x.status == 200) {
+						/*
+						Si l'ingrédient existe, on l'ajoute bien dans la div souhaité.
+						Sinon on affiche une erreur.
+						*/
 						if (x.responseText == "true"){
 							addIngredient(div);
 						} else {
@@ -100,27 +128,41 @@ $(document).ready(function(){
 		x.send(null);
 	}
 
+	/*
+	Fonction qui ajoute un élément à une div d'ingrédient.
+	*/
 	function addIngredient(div){
 		let ingredients = document.getElementsByClassName('ingr');
 		let res = true;
 		let ingre = document.getElementById('search').value;
 
+		/*
+		On regarde si l'ingrédient n'est pas déjà présent dans une
+		des divs.
+		*/
 		for (let i of ingredients) {
     	if (i.innerHTML == ingre){
 				res = false;
 			}
 		}
 
+		/*
+		Si l'ingrédient n'est pas déjà présent, alors on l'ajoute.
+		Sinon on affiche une erreur.
+		*/
 		if (res){
 			let d;
+			let ingredient;
 
 			if (div){
 				d = document.getElementById('souhaite');
-				d.innerHTML += "<div class='ingr +ingr'>" + ingre + "</div>";
+				ingredient = "<div class='ingr +ingr'>" + ingre + "</div>";
 			} else {
 				d = document.getElementById('nesouhaitepas');
-				d.innerHTML += "<div class='ingr -ingr'>" + ingre + "</div>";
+				ingredient = "<div class='ingr -ingr'>" + ingre + "</div>";
 			}
+
+			d.innerHTML += ingredient;
 
 		} else {
 			document.getElementById('erreur').innerHTML = "Cet ingrédient est déjà présent dans la recherche";
@@ -129,11 +171,19 @@ $(document).ready(function(){
 		document.getElementById('search').value = "";
 	}
 
+	/*
+	Quand on clique sur réinitialiser, on vide les 2 divs
+	des ingrédients.
+	*/
 	$(document).on('click','#reinit', function(){
 		document.getElementById('souhaite').innerHTML = "";
 		document.getElementById('nesouhaitepas').innerHTML = "";
 	});
 
+	/*
+	Quand on clique sur recherche, on effectue la recherche avec
+	les ingrédients spécifiés.
+	*/
 	$(document).on('click','#effectuerRecherche', function(){
 		var s = document.getElementsByClassName("+ingr");
 		var n = document.getElementsByClassName("-ingr");
@@ -149,6 +199,10 @@ $(document).ready(function(){
 			nonsouhaites.push(i.innerHTML);
 		}
 
+		/*
+		On effectue une requête Ajax en donnant
+		les ingrédients.
+		*/
 		$.ajax({
       method: "POST",
       url: 'js/rechercherResults.php',
@@ -157,6 +211,7 @@ $(document).ready(function(){
 				"nonsouhaites": nonsouhaites
       },
       success:function(data){
+				//On redirige vers la page des résultats.
 				window.location.href = "search";
 			}
     });

@@ -1,0 +1,28 @@
+h2 {
+    font-size: 1.4em;
+    text-decoration: underline;
+    padding-bottom: 0.5em;
+    display: block;
+    text-align: center;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.bienvenue {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2%;
+}
+
+#accueil {
+    width: 800px;
+    height: 400px;
+    display: inline-block;
+    align-self: center;
+    padding: 50px;
+}

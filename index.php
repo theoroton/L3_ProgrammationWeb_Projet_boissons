@@ -1,24 +1,63 @@
 <?php
 
+//Inclusion de l'autoload
 require_once('vendor/autoload.php');
 
+/*
+Configuration de Slim
+*/
 $configuration = ['settings' => ['displayErrorDetails' => true,],];
 $c = new \Slim\Container($configuration);
 $app = new \Slim\App($c);
 
+
+/*
+Utilisation d'alias pour retrouver les classes
+dans l'arborescence.
+Dans chaque classe on commence par indiquer
+le namespace de celle-ci en fonction du dossier
+où elle se trouve:
+
+namespace cocktails\<dossier>;
+
+*/
 use \Illuminate\Database\Capsule\Manager as DB;
 use \cocktails\controleur\ControleurIngredients;
 use \cocktails\controleur\ControleurRecettes;
 use \cocktails\controleur\ControleurPanier;
 use \cocktails\controleur\ControleurUtilisateur;
 
+/*
+Création de la base de données et connexion avec les
+informations de connexion du fichier 'conf.ini'
+*/
 $db=new DB();
 $db->addConnection(parse_ini_file('src/conf/conf.ini'));
 $db->setAsGlobal();
+//Démarrage d'Eloquent
 $db->bootEloquent();
 
+//Création de la session
 session_start();
 
+/*
+Ceci est le fichier principale qui va permettre de
+naviguer sur le site.
+Grâce à Slim, quand une des urls ci-dessous sera entré,
+Slim se chargera automatiquement de trouver le chemin
+et exécutera les opérations liés à ces chemins.
+On utilise aussi Slim dans certains cas afin de rediriger
+l'utilisateur.
+*/
+
+
+/*
+Url : accueil
+Méthode : GET
+
+On appelle le contrôleur qui permet d'afficher la page
+d'accueil.
+*/
 $app->get('/accueil', function () {
   ControleurUtilisateur::testConnexion();
 
@@ -26,16 +65,39 @@ $app->get('/accueil', function () {
   $con->afficherAccueil();
 });
 
+
+/*
+Url : connexion
+Méthode : GET
+
+On appelle le contrôleur qui permet d'afficher la page
+de connexion.
+*/
 $app->get('/connexion', function(){
   $con = new ControleurUtilisateur();
   $con->afficherConnexion();
 });
 
+/*
+Url : connexion
+Méthode : POST
+
+On appelle le contrôleur qui permet de gérer la connexion
+d'un utilisateur au site.
+*/
 $app->post('/connexion', function(){
   $con = new ControleurUtilisateur();
   $con->connexion();
 });
 
+/*
+Url : inscription
+Méthode : GET
+
+Si l'utilisateur dispose déjà du cookie du site, alors on
+le redirige vers l'accueil car il est déjà connecté.
+Sinon on appelle le controleur qui affiche l'inscription.
+*/
 $app->get('/inscription', function($request, $response, $next){
   if (!isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -45,6 +107,15 @@ $app->get('/inscription', function($request, $response, $next){
   }
 });
 
+/*
+Url : inscription
+Méthode : POST
+
+Si l'utilisateur dispose déjà du cookie du site, alors on
+le redirige vers l'accueil car il est déjà connecté.
+Sinon on appelle le controleur qui permet de gérer l'inscription
+d'un utilisateur.
+*/
 $app->post('/inscription', function($request, $response, $next){
   if (!isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -54,6 +125,14 @@ $app->post('/inscription', function($request, $response, $next){
   }
 });
 
+/*
+Url : profil
+Méthode : GET
+
+Si l'utilisateur ne dispose pas du cookie du site, alors on
+le redirige vers l'accueil car il n'est pas connecté.
+Sinon on appelle le controleur qui affiche le profil.
+*/
 $app->get('/profil', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -63,6 +142,15 @@ $app->get('/profil', function($request, $response, $next){
   }
 });
 
+/*
+Url : modifierProfil
+Méthode : GET
+
+Si l'utilisateur ne dispose pas du cookie du site, alors on
+le redirige vers l'accueil car il n'est pas connecté.
+Sinon on appelle le controleur qui affiche la page
+de modification du profil.
+*/
 $app->get('/modifierProfil', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -72,6 +160,15 @@ $app->get('/modifierProfil', function($request, $response, $next){
   }
 });
 
+/*
+Url : modifierProfil
+Méthode : POST
+
+Si l'utilisateur ne dispose pas du cookie du site, alors on
+le redirige vers l'accueil car il n'est pas connecté.
+Sinon on appelle le controleur qui permet de gérer la
+modification du profil de l'utilisateur.
+*/
 $app->post('/modifierProfil', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -81,6 +178,15 @@ $app->post('/modifierProfil', function($request, $response, $next){
   }
 });
 
+/*
+Url : modifierMdp
+Méthode : GET
+
+Si l'utilisateur ne dispose pas du cookie du site, alors on
+le redirige vers l'accueil car il n'est pas connecté.
+Sinon on appelle le controleur qui affiche la page
+de modification du mot de passe.
+*/
 $app->get('/modifierMdp', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -90,6 +196,15 @@ $app->get('/modifierMdp', function($request, $response, $next){
   }
 });
 
+/*
+Url : modifierMdp
+Méthode : POST
+
+Si l'utilisateur ne dispose pas du cookie du site, alors on
+le redirige vers l'accueil car il n'est pas connecté.
+Sinon on appelle le controleur qui permet de gérer
+la modification du profil de l'utilisateur.
+*/
 $app->post('/modifierMdp', function($request, $response, $next){
   if (isset($_COOKIE['CookieCocktails'])) {
       $con = new ControleurUtilisateur();
@@ -99,6 +214,14 @@ $app->post('/modifierMdp', function($request, $response, $next){
   }
 });
 
+/*
+Url : recettes
+Méthode : GET
+
+
+On appelle le controleur qui affiche la page
+de recherche de recettes.
+*/
 $app->get('/recettes', function(){
   ControleurUtilisateur::testConnexion();
 
@@ -106,6 +229,14 @@ $app->get('/recettes', function(){
   $con->afficherRecherche();
 });
 
+/*
+Url : search
+Méthode : GET
+
+
+On appelle le controleur qui affiche la page
+de résultats de recherche.
+*/
 $app->get('/search', function (){
   ControleurUtilisateur::testConnexion();
 
@@ -113,6 +244,17 @@ $app->get('/search', function (){
   $con->recherche();
 });
 
+/*
+Url : recette
+Méthode : GET
+
+
+On appelle le controleur qui affiche la page
+d'une recette.
+Si on ne détecte pas l'id dans l'url, alors on
+dirige l'utilisateur sur la page de recherche de
+recettes.
+*/
 $app->get('/recette', function ($request, $response, $next){
   ControleurUtilisateur::testConnexion();
 
@@ -124,6 +266,17 @@ $app->get('/recette', function ($request, $response, $next){
   }
 });
 
+/*
+Url : ingredient
+Méthode : GET
+
+
+On appelle le controleur qui affiche la page
+d'un ingrédient.
+Si on ne détecte pas le nom dans l'url, alors on
+dirige l'utilisateur sur l'ingrédient père de tous :
+Aliment.
+*/
 $app->get('/ingredient', function ($request, $response, $next){
   ControleurUtilisateur::testConnexion();
 
@@ -135,6 +288,14 @@ $app->get('/ingredient', function ($request, $response, $next){
   }
 });
 
+/*
+Url : panier
+Méthode : GET
+
+
+On appelle le controleur qui affiche la page
+du panier
+*/
 $app->get('/panier', function () {
   ControleurUtilisateur::testConnexion();
 
@@ -142,5 +303,6 @@ $app->get('/panier', function () {
   $con->afficherPanier();
 });
 
+//On lance Slim
 $app->run();
 ?>

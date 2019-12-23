@@ -1,0 +1,97 @@
+* {
+    font-family: "Dosis", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: rgb(83, 2, 129);
+    background-size: 100% auto;
+    align-items: center;
+    height: 100%;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+html {
+    height: 100%;
+}
+
+#body-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+#ing-show {
+    padding: 5px;
+    margin-bottom: 20px;
+    display: flexbox;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #dbc9cc;
+    margin-top: 15px;
+    color: #000;
+    font-size: 1.3em;
+    flex-wrap: wrap;
+    width: 20%;
+    word-wrap: break-word;
+}
+
+#recette {
+    display: inline-block;
+    width: 30%;
+    min-height: 500px;
+    margin: auto;
+    padding: 20px;
+    word-wrap: break-word;
+    text-align: center;
+    font-size: 1.3em;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    color: #000;
+}
+
+article {
+    display: block;
+    width: 150px;
+    min-height: 160px;
+    margin: auto;
+    justify-content: center;
+    color: #000;
+    text-align: center;
+}
+
+article h1 {
+    font-size: 1.6em;
+    text-align: left;
+    opacity: 1;
+    color: #8b008b;
+}
+
+article a {
+    color: #8b008b;
+}
+
+h2 {
+    font-size: 1.4em;
+    text-decoration: underline;
+    padding-bottom: 0.5em;
+    display: block;
+    text-align: center;
+}
+
+a {
+    color: #997379;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: rgb(95, 8, 73);
+}

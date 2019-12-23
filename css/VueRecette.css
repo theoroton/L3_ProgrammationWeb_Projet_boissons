@@ -1,0 +1,52 @@
+h2 {
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#recette {
+  margin-bottom: 20px;
+  margin-left: 10%;
+  display: inline-block;
+  width: 80%;
+  text-align: center;
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+}
+
+#prep {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 10px;
+}
+
+#ligne {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5%;
+  width: 90%;
+}
+
+.colonne {
+  vertical-align: top;
+  display: inline-block;
+  width: 30%;
+}
+
+#fav {
+  position: absolute;
+  top: 280px;
+  right: 16%;
+  width: 56px;
+  height: 56px;
+}
+
+.fav {
+  transition: .3s ease-in-out;
+}
+
+.fav:hover {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}

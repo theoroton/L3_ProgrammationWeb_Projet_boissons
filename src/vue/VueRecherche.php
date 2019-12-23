@@ -4,15 +4,29 @@ namespace cocktails\vue;
 
 use \cocktails\vue\VueHeader;
 
+/*
+La vue recherche affiche l'interface de recherche
+
+La vue recherche contient :
+- 2 div qui contienent respectivement les
+ingrédients souhaités et les ingrédients non
+souhaités.
+- 1 bouton pour Réinitialiser les ingrédients dans
+ces div.
+- 1 champ de recherche pour trouver un ingrédient
+- 2 boutons qui permettent d'ajouter l'ingrédient
+recherché dans une div
+- 1 bouton pour effectuer la recherche
+*/
+
+//Vue recherche
 class VueRecherche {
 
-  private $ingredients;
-
-  public function __construct($igr){
-    $this->ingredients = $igr;
-  }
-
+  /*
+  Méthode render qui affiche l'accueil
+  */
   public function render(){
+      //Ajout du header
       $vue = new VueHeader();
       $header = $vue->render();
 
@@ -47,19 +61,23 @@ class VueRecherche {
       </div>
 END;
 
+      //Contenu à afficher
       $html = <<<END
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
-          <link rel="stylesheet" href="css/vueRecherche.css">
+          <link rel="stylesheet" href="css/VueRecherche.css">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/recherche.js'></script>
-          <link rel="stylesheet" href="css/VueRecherche.css">
           <title>Recherche</title>
         </head>
         $header
         <body>
-        <br>
+
+        <h2>Recherche</h2><br>
+
         $content
 
         </body>

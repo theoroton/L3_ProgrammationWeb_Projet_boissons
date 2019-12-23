@@ -4,16 +4,34 @@ namespace cocktails\vue;
 
 use \cocktails\vue\VueHeader;
 
+/*
+La vue recette affiche une recette et
+toutes ses informations
+*/
+
+//Vue recette
 class VueRecette  {
 
+  //id de la recette
   private $id;
+  //Titre de la recette
   private $titre;
+  //Quantités des ingrédients de la recette
   private $ingrs;
+  //Préparation de la recette
   private $preparation;
+  //Ingrédients de la recette
   private $ingredients_requis;
+  //Image de la recette
   private $image;
+  //Booléen si l'utilisateur a cette recette en favori
   private $favori;
 
+  /*
+  Constructeur de la vue à laquelle on donne
+  l'id, le titre, les quantités, la préparation,
+  les ingrédients, l'image et le favori.
+  */
   public function __construct($i, $t, $in, $p, $ir, $im, $f){
     $this->id = $i;
     $this->titre = $t;
@@ -24,94 +42,118 @@ class VueRecette  {
     $this->favori = $f;
   }
 
+  /*
+  Méthode render qui affiche la recette
+  */
   public function render(){
       $vue = new VueHeader();
       $header = $vue->render();
 
+      //Affichage de la préparation
       $content = <<<END
         <input type="hidden" id="id" value=$this->id>
-        <strong>Titre :</strong> $this->titre<br><br>
-        <strong>Quantités :</strong><br>
-        <ul>
+
+        <div id='prep'>
+          <strong>Préparation :</strong> $this->preparation<br><br>
+        </div>
+
+        <div id='ligne'>
+          <div class='colonne'>
+            <strong>Quantités :</strong><br><br>
 END;
 
-///////////////////////////////////////////////////////////////////////
-//Quantités
-///////////////////////////////////////////////////////////////////////
-
+      //Affichage des quantités
       if (sizeof($this->ingrs) == 0){
         $content .= "Aucun ingrédient";
       } else {
         foreach ($this->ingrs as $value) {
           $content .= <<<END
-          <li>$value</li><br>
+          <div class='ingr'>$value</div>
 END;
         }
       }
 
       $content .= <<<END
-        </ul>
-        <strong>Préparation :</strong> $this->preparation<br><br>
-        <strong>Ingrédients requis :</strong><br><br>
+        </div>
+
+        <div class='colonne'>
+          <strong>Ingrédients requis :</strong><br><br>
 END;
 
-///////////////////////////////////////////////////////////////////////
-//Ingrédients requis
-///////////////////////////////////////////////////////////////////////
-
+      //Affichage des ingrédients
       if (sizeof($this->ingredients_requis) == 0){
         $content .= "Aucun ingrédient";
       } else {
         foreach ($this->ingredients_requis as $value) {
+          /*
+          On met un lien vers chaque ingrédient pour aller
+          dans l'arborescence des ingrédients
+          */
           $content .= <<<END
           <a href="ingredient?name=$value">$value</a><br>
 END;
         }
       }
 
-///////////////////////////////////////////////////////////////////////
-//Image
-///////////////////////////////////////////////////////////////////////
+      $content .= "</div>";
 
+      //Affichage de l'image
+
+      /*
+      Si l'image correspond au chemin donnée existe, alors
+      on affiche cette image, sinon on affiche rien.
+      */
       if (file_exists($this->image)){
         $content .= <<<END
-          <br><strong>Image</strong><br><br>
+          <div id='image' class='colonne'>
+            <strong>Image :</strong><br>
           <img src=$this->image width=100 height=150>
+          </div>
 END;
       }
 
-///////////////////////////////////////////////////////////////////////
-//Favori
-///////////////////////////////////////////////////////////////////////
+      //Affichage du favori
+      $content .= "</div><div id='fav'>";
 
-      $content .= "<br><span id='imgFav'><br>";
-
+      /*
+      Si la recette est déjà en favori, alors on affiche l'image
+      pour enlever la recette des favoris
+      */
       if ($this->favori){
         $content .= <<<END
-        <img id=delFav src=img/broken_heart.png width=50 height = 50>
+        <img id=delFav class=fav src=img/broken_heart.png width=30 height = 30>
 END;
 
+      /*
+      Si la recette n'est pas en favori, alors on affiche l'image
+      pour ajouter la recette aux favoris
+      */
       } else {
         $content .= <<<END
-        <img id=addFav src=img/heart.png width=50 height = 50>
+        <img id=addFav class=fav src=img/heart.png width=30 height = 30>
 END;
       }
 
-      $content .= "</span>";
+      $content .= "</div>";
 
-
+      //Contenu à afficher
       $html = <<<END
       <!DOCTYPE html>
         <head>
           <meta charset="utf-8">
-          <link rel="stylesheet" href="css/vueRecettes.css">
+          <link rel="stylesheet" href="css/VueRecette.css">
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+          <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
           <script src='js/fav.js'></script>
           <title>$this->titre</title>
         </head>
         $header
         <body>
-          $content
+          <h2>$this->titre</h2><br>
+          <div id='recette'>
+            $content
+          </div>
         </body>
       </html>
 END;

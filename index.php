@@ -65,6 +65,10 @@ $app->get('/accueil', function () {
   $con->afficherAccueil();
 });
 
+$app->get('/', function($request, $response, $next) {
+  return $response->withRedirect("accueil");
+});
+
 
 /*
 Url : connexion
